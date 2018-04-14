@@ -7,7 +7,7 @@
         <div id = "addReview">
             <!--TO DO: ALLOW ONLY USERS OR ADMIN TO ADD A REVIEW-->
         </div>
-        <div id = "reviws">
+        <div id = "reviews">
             <!--TO DO: DISPLAY ALL REVIEWS-->
         </div>
         <div id = "editReviews">

@@ -4,16 +4,31 @@
         <div id = "login">
             <!--TO DO: INSERT LOGIN FIELDS AND BUTTONS-->
             <h1>Login here</h1>
-            <button v-on:click = "addSample">Testing Sample Database</button>
+            <button v-on:click = "addDepartment('spanish')">Add Department</button>
+            <button v-on:click = "addClass('spanish','306')">Add Class</button>
+            <div v-for = "element in departments">
+                <h3>{{element.name}}</h3>
+            </div>
         </div>
         <div id = "welcome">
             <!--TO DO: SHOW LOGGED IN USER-->
             <h1>Welcome the user</h1>
         </div>
         <!--HOME PAGE WITH ALL THE DEPARTMENTS-->
-        <homePage></homePage>
+        <homePage 
+                  :departments = "departments" 
+                  :addDepartment = "addDepartment" 
+                  :changeCurrentDepartment = "changeCurrentDepartment"
+                  :editDepartment = "editDepartment"
+                  >
+        </homePage>
         <!--DEPARTMENT PAGE-->
-        <departmentPage></departmentPage>
+        <departmentPage 
+                        :addClass = "addClass"
+                        :currentDepartment = "currentDepartment"
+                        :addDepartment = "addDepartment"
+        >
+        </departmentPage>
         <!--CLASS REVIEWS PAGE-->
         <classReviews></classReviews>
         <!--ADMIN REQUESTS PAGE-->
@@ -39,17 +54,20 @@
 
     var db = Firebase.initializeApp(config).database();
     var sampleDB = db.ref("sample");
+    var departmentsWithClasses = db.ref("departments");
 
     export default {
         name: 'app',
         data () {
             return {
-                msg: 'Welcome to Your Vue.js App'
+                msg: 'Welcome to Your Vue.js App',
+                currentDepartment: []
             }
         },
         //connection to Firebase here
         firebase:{
-            sample: sampleDB
+            sample: sampleDB,
+            departments: departmentsWithClasses
         },
         //components
         components:{
@@ -62,6 +80,36 @@
         methods:{
             addSample: function(){
                 sampleDB.push({text: "hello"});
+            },
+            addDepartment: function(department)
+            {
+                departmentsWithClasses.push({name: department});
+            },
+            addClass: function(department, classNumber)
+            {
+                for(var i  = 0; i < this.departments.length; i++)
+                    {
+                        console.log(this.departments[i].name)
+                        if(this.departments[i].name == department)
+                            {
+                                departmentsWithClasses.child(this.departments[i]['.key']).child('classes').push({number: classNumber});
+                            }
+                    }
+            },
+            editDepartment: function(department, newName)
+            {
+                for(var i  = 0; i < this.departments.length; i++)
+                    {
+                        console.log(this.departments[i].name)
+                        if(this.departments[i].name == department)
+                            {
+                                departmentsWithClasses.child(this.departments[i]['.key']).update({name: newName});
+                            }
+                    }
+            },
+            changeCurrentDepartment(department)
+            {
+                this.currentDepartment = department;
             }
         }
     }
