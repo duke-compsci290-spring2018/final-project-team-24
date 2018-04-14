@@ -3,14 +3,21 @@
         <h1>{{ msg }}</h1>
         <div id = "login">
             <!--TO DO: INSERT LOGIN FIELDS AND BUTTONS-->
+            <h1>Login here</h1>
+            <button v-on:click = "addSample">Testing Sample Database</button>
         </div>
         <div id = "welcome">
             <!--TO DO: SHOW LOGGED IN USER-->
+            <h1>Welcome the user</h1>
         </div>
         <!--HOME PAGE WITH ALL THE DEPARTMENTS-->
+        <homePage></homePage>
         <!--DEPARTMENT PAGE-->
+        <departmentPage></departmentPage>
         <!--CLASS REVIEWS PAGE-->
+        <classReviews></classReviews>
         <!--ADMIN REQUESTS PAGE-->
+        <adminRequests></adminRequests>
     </div>
 </template>
 
@@ -50,11 +57,18 @@
             DepartmentPage,
             ClassReviews,
             AdminRequests
+        },
+        //methods
+        methods:{
+            addSample: function(){
+                sampleDB.push({text: "hello"});
+            }
         }
     }
 </script>
 
 <style>
+/*This is copied from the webpack simple and should be changed*/
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
