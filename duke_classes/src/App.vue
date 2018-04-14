@@ -7,45 +7,51 @@
         <div id = "welcome">
             <!--TO DO: SHOW LOGGED IN USER-->
         </div>
-        <div id = "departments">
-            <!--TO DO: DISPLAY DEPARTMENTS-->
-        </div>
-        <div id = "addDepartment">
-            <!--TO DO: ALLOW ONLY USERS OR ADMIN TO ADD DEPARTMENTS-->
-        </div>
-        <div id = "editDepartment">
-            <!--TO DO: ALLOW ONLY ADMIN TO EDIT DEPARTMENTS-->
-        </div>
+        <!--HOME PAGE WITH ALL THE DEPARTMENTS-->
+        <!--DEPARTMENT PAGE-->
+        <!--CLASS REVIEWS PAGE-->
+        <!--ADMIN REQUESTS PAGE-->
     </div>
 </template>
 
 <script>
-import Firebase from 'firebase';
+    import Firebase from 'firebase'
+    import HomePage from './assets/components/HomePage'
+    import DepartmentPage from './assets/components/DepartmentPage'
+    import ClassReviews from './assets/components/ClassReviews'
+    import AdminRequests from './assets/components/AdminRequests'
     
-var config = {
-    apiKey: "AIzaSyDGGjNGZez_-5G4zXfiyG79xoL4QuKAkdc",
-    authDomain: "cs290-finalproject.firebaseapp.com",
-    databaseURL: "https://cs290-finalproject.firebaseio.com",
-    projectId: "cs290-finalproject",
-    storageBucket: "",
-    messagingSenderId: "123212092896"
-  }
+    var config = {
+        apiKey: "AIzaSyDGGjNGZez_-5G4zXfiyG79xoL4QuKAkdc",
+        authDomain: "cs290-finalproject.firebaseapp.com",
+        databaseURL: "https://cs290-finalproject.firebaseio.com",
+        projectId: "cs290-finalproject",
+        storageBucket: "",
+        messagingSenderId: "123212092896"
+      }
 
-var db = Firebase.initializeApp(config).database();
-var sampleDB = db.ref("sample");
-    
-export default {
-    name: 'app',
-    data () {
-        return {
-            msg: 'Welcome to Your Vue.js App'
+    var db = Firebase.initializeApp(config).database();
+    var sampleDB = db.ref("sample");
+
+    export default {
+        name: 'app',
+        data () {
+            return {
+                msg: 'Welcome to Your Vue.js App'
+            }
+        },
+        //connection to Firebase here
+        firebase:{
+            sample: sampleDB
+        },
+        //components
+        components:{
+            HomePage,
+            DepartmentPage,
+            ClassReviews,
+            AdminRequests
         }
-    },
-    //connection to Firebase here
-    firebase:{
-        sample: sampleDB
     }
-}
 </script>
 
 <style>
