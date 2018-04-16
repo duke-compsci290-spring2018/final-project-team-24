@@ -6,6 +6,8 @@
             <h1>Login here</h1>
             <button v-on:click = "addDepartment('spanish')">Add Department</button>
             <button v-on:click = "addClass('spanish','306')">Add Class</button>
+            <button v-on:click="editClasses('306', '204', 'spanish')">Edit class</button>
+            <button v-on:click="addReview('spanish', '220', 'hello')">EAddReview</button>
             <div v-for = "element in departments">
                 <h3>{{element.name}}</h3>
             </div>
@@ -27,10 +29,17 @@
                         :addClass = "addClass"
                         :currentDepartment = "currentDepartment"
                         :addDepartment = "addDepartment"
+                        :editClasses="editClasses"
+                        :changeCurrentClass="changeCurrentClass"
         >
         </departmentPage>
         <!--CLASS REVIEWS PAGE-->
-        <classReviews></classReviews>
+        <classReviews
+                      :currentClass = "currentClass"
+                      :addReview = "addReview"
+                      :departmentName = "currentDepartmentName"
+                      :classNumber = "currentClassNumber">
+        </classReviews>
         <!--ADMIN REQUESTS PAGE-->
         <adminRequests></adminRequests>
     </div>
@@ -55,19 +64,24 @@
     var db = Firebase.initializeApp(config).database();
     var sampleDB = db.ref("sample");
     var departmentsWithClasses = db.ref("departments");
+    var classesWithReviews = db.ref('classes');
 
     export default {
         name: 'app',
         data () {
             return {
                 msg: 'Welcome to Your Vue.js App',
-                currentDepartment: []
+                currentDepartment: [],
+                currentClass: [],
+                currentDepartmentName: "",
+                currentClassNumber: ""
             }
         },
         //connection to Firebase here
         firebase:{
             sample: sampleDB,
-            departments: departmentsWithClasses
+            departments: departmentsWithClasses,
+            classes: classesWithReviews
         },
         //components
         components:{
@@ -92,9 +106,12 @@
                         console.log(this.departments[i].name)
                         if(this.departments[i].name == department)
                             {
-                                departmentsWithClasses.child(this.departments[i]['.key']).child('classes').push({number: classNumber});
+                                departmentsWithClasses.child(this.departments[i]['.key']).child('classes').child(classNumber).update({number: classNumber});
+                                classesWithReviews.push({class: department+classNumber});
+                                this.changeCurrentDepartment(this.departments[i]);
                             }
                     }
+                
             },
             editDepartment: function(department, newName)
             {
@@ -107,9 +124,51 @@
                             }
                     }
             },
+            editClasses: function(number, newNumber, department){
+                for(var i=0; i<this.departments.length; i++){
+                    if(this.departments[i].name==department)
+                    {
+                        console.log(this.departments[i].name);
+                        departmentsWithClasses.child(this.departments[i]['.key']).child('classes').child(number).remove();
+                        departmentsWithClasses.child(this.departments[i]['.key']).child('classes').child(newNumber).update({number:newNumber});
+                        
+                        for(var j=0; j<this.classes.length; j++)
+                        {
+                            if(this.classes[j].class==department+number){
+                                classesWithReviews.child(this.classes[j]['.key']).update({class: department+ newNumber});
+                            }
+                        }
+  
+                    }
+                }  
+            },
             changeCurrentDepartment(department)
             {
                 this.currentDepartment = department;
+            },
+            changeCurrentClass(department, number)
+            {
+                for(var j=0; j<this.classes.length; j++)
+                    {
+                        if(this.classes[j].class==department+number)
+                        {
+                            this.currentClass = this.classes[j];
+                            this.currentDepartmentName = department;
+                            this.currentClassNumber = number;
+                        }
+                    }
+                
+            },
+            addReview(department, classNumber, reviewInfo)
+            {
+                for(var j=0; j<this.classes.length; j++)
+                    {
+                        if(this.classes[j].class==department+classNumber)
+                        {
+                            classesWithReviews.child(this.classes[j]['.key']).child('reviews').push(reviewInfo);
+                            this.changeCurrentClass(department, classNumber);
+                        }
+                    }
             }
         }
     }
