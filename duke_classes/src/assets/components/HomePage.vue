@@ -5,27 +5,31 @@
             <!--TO DO: DISPLAY DEPARTMENTS-->
             <button v-on:click = "changeCurrentDepartment(element)">{{element.name}}</button>
         </ul>
-        <div id = "addDepartment">
+        <div id = "addDepartment" v-show = "currentUser != ''">
             <!--TO DO: ALLOW ONLY USERS OR ADMIN TO ADD DEPARTMENTS-->
             <input v-model = "newDepartment" placeholder="Add a new Department" @keyup.enter= "addDepartment(newDepartment)">  
         </div>
-        <div id = "editDepartment">
+        <div id = "editDepartment" v-show = "userIsAdmin">
             <!--TO DO: ALLOW ONLY ADMIN TO EDIT DEPARTMENTS-->
             <input v-model = "departmentToEdit" placeholder="Edit this Department">
             <input v-model = "newName" placeholder="New Name for Department">
             <button v-on:click = "editDepartment(departmentToEdit, newName), clearEdit()">Edit</button>
+        </div>
+        <div id="removeDepartment">
+            <input @keyup.enter="deleteDepartment(departmentToDelete)" v-model = "departmentToDelete" placeholder="Delete this Department">
         </div>
     </div>
 </template>
 <script>
 export default {
     name: "HomePage",
-    props: ["departments", "addDepartment", "changeCurrentDepartment", "editDepartment"],
+    props: ["departments", "addDepartment", "changeCurrentDepartment", "editDepartment", "currentUser", "userIsAdmin", "deleteDepartment"],
     data () {
             return {
                 newDepartment: '',
                 departmentToEdit: '',
-                newName: ''
+                newName: '',
+                departmentToDelete:''
             }
     },
     methods: {
@@ -36,6 +40,7 @@ export default {
         {
             this.departmentToEdit = "";
             this.newName = "";
+            this.newDepartment="";
         }
     }
 }
