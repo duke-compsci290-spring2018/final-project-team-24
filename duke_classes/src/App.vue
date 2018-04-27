@@ -14,16 +14,20 @@
                 <div id = "login">
                     <!--TO DO: INSERT LOGIN FIELDS AND BUTTONS-->
                     <h3>Sign Up Here:</h3>
-                    <input v-model = "newUserEmail" placeholder="netID@duke.edu">
-                    <input v-model = "newUserPassword" placeholder="Enter Password">
+                    <input id = "newEmail" v-model = "newUserEmail" placeholder="netID@duke.edu">
+                    <label for="newEmail" class="visuallyhidden">New User Email (netid@duke.edu)</label>
+                    <input id = "newPassword" v-model = "newUserPassword" placeholder="Enter Password">
+                    <label for="newPassword" class="visuallyhidden">New User Password</label>
                     <form id = "form" @submit.prevent = "storeImage">
-                        <p><label>Choose User Image:</label>
+                        <p><label for = "form">Choose User Image:</label>
                         <input type="file" id="files" name="files[]" /></p>
                     </form>
                     <button v-on:click = "createUser">Create User</button>
                     <h3>Already have an account? Login here:</h3>
-                    <input v-model = "loginEmail" placeholder="Enter Email">
-                    <input v-model = "loginPassword" placeholder="Enter Password">
+                    <input id = "existingEmail" v-model = "loginEmail" placeholder="Enter Email">
+                    <label for="existingEmail" class="visuallyhidden">Existing Email for login</label>
+                    <input id = "existingPassword" v-model = "loginPassword" placeholder="Enter Password">
+                    <label for="existingPassword" class="visuallyhidden">Existing Email for login</label>
                     <button v-on:click = "login">Login</button>
                     <h3 v-show = "userIsAdmin">Admin?</h3>
                     <button v-show = "userIsAdmin" v-on:click = "adminPage">Show Administrator Requests</button>
@@ -613,5 +617,17 @@
         color: #595959;
         padding: 5px;
         text-align: left;
+    }
+    /*This CSS styling is taken from https://www.w3.org/WAI/tutorials/forms/labels/#note-on-hiding-elements 
+    to improve the accessiblity of our website*/
+    .visuallyhidden {
+      border: 0;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
     }
 </style>

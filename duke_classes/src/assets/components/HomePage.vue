@@ -9,14 +9,19 @@
         </ul>
         <div id = "addDepartment" v-show = "currentUser != ''">
             <!--TO DO: ALLOW ONLY USERS OR ADMIN TO ADD DEPARTMENTS-->
-            <input v-model = "newDepartment" placeholder="Add a new Department" @keyup.enter= "addDepartment(newDepartment)">  
+            <input id = "newDep" v-model = "newDepartment" placeholder="Add a new Department" @keyup.enter= "addDepartment(newDepartment)"> 
+            <label for="newDep" class="visuallyhidden">Create new department with this name</label>
         </div>
         <div id = "editOrRemoveDepartment" v-show = "userIsAdmin">
             <!--TO DO: ALLOW ONLY ADMIN TO EDIT DEPARTMENTS-->
             <h4>Want to edit or delete?</h4>
-            <p><input v-model = "departmentToEdit" placeholder="Edit this Department">
-            <input v-model = "newName" placeholder="New Name for Department">
-            <button v-on:click = "editDepartment(departmentToEdit, newName), clearEdit()">Edit</button></p>
+            <p>
+                <input id = "editingDepartment" v-model = "departmentToEdit" placeholder="Edit this Department">
+                <label for="editingDepartment" class="visuallyhidden">Name of the department to edit</label>
+                <input id = "editedName" v-model = "newName" placeholder="New Name for Department">
+                <label for="editedName" class="visuallyhidden">New name for department being edited</label>
+                <button v-on:click = "editDepartment(departmentToEdit, newName), clearEdit()">Edit</button>
+            </p>
             <p><input @keyup.enter="deleteDepartment(departmentToDelete)" v-model = "departmentToDelete" placeholder="Delete this Department"></p>
         </div>
     </div>

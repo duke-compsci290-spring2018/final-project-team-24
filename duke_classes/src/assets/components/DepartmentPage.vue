@@ -9,14 +9,17 @@
                 </li>
             </ul>  
         </div>
-        <div id = "addDepartment" v-show = "currentUser != ''">
-            <input v-model="newClass" placeholder="Add a new class" @keyup.enter="addClass(currentDepartment.name, newClass)">
+        <div id = "addClass" v-show = "currentUser != ''">
+            <input id = "addingClass" v-model="newClass" placeholder="Add a new class" @keyup.enter="addClass(currentDepartment.name, newClass)">
+            <label for="addingClass" class="visuallyhidden">Create new class with this name</label>
             <!--TO DO: ALLOW ONLY USERS OR ADMIN TO ADD CLASSES-->
         </div>
         <div id = "editClasses" v-show = "userIsAdmin">
             <h4>Want to edit or delete?</h4>
-            <input v-model = "classToEdit" placeholder="Edit this Class">
-            <input v-model = "newNumber" placeholder="New Number for Class">
+            <input id = "editingClass" v-model = "classToEdit" placeholder="Edit this Class">
+            <label for="editingClass" class="visuallyhidden">Number of the class to edit</label>
+            <input id = "editedNumber" v-model = "newNumber" placeholder="New Number for Class">
+            <label for="editedNumber" class="visuallyhidden">New number for class being edited</label>
             <button v-on:click = "editClasses(classToEdit, newNumber, currentDepartment.name), clearEdit()">Edit</button>
             
             <!--TO DO: ALLOW ONLY ADMIN TO EDIT CLASSES-->
