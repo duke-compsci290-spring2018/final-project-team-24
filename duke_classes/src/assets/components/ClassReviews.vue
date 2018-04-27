@@ -1,6 +1,6 @@
 <template>
     <div id = "classReviews">
-        <h1 id= "title">{{departmentName}} {{classNumber}}</h1>
+        <h1 id= "title">Class: {{departmentName}} {{classNumber}}</h1>
         <div id = "averageReviews">
             <!--TO DO: DISPLAY AVERAGE DIFFICULTY AND AVERAGE ENJOYMENT-->
             <ul>
@@ -15,39 +15,40 @@
             </div>
             <div id = "reviewCreation" v-show = "showAddReview">
                 <h4>Overall Enjoyment:</h4>
-                <input type="radio" v-model="enjoyment" value = "0" id = "0">
-                <label for = "0">0</label>
-                <input type="radio" v-model="enjoyment" value = "1" id = "1">
-                <label for = "1">1</label>
-                <input type="radio" v-model="enjoyment" value = "2" id = "2">
-                <label for = "2">2</label>
-                <input type="radio" v-model="enjoyment" value = "3" id = "3">
-                <label for = "3">3</label>
-                <input type="radio" v-model="enjoyment" value = "4" id = "4">
-                <label for = "4">4</label>
-                <input type="radio" v-model="enjoyment" value = "5" id = "5">
-                <label for = "5">5</label>
+                <input type="radio" v-model="enjoyment" value = "0" id = "enj0">
+                <label for = "enj0">0</label>
+                <input type="radio" v-model="enjoyment" value = "1" id = "enj1">
+                <label for = "enj1">1</label>
+                <input type="radio" v-model="enjoyment" value = "2" id = "enj2">
+                <label for = "enj2">2</label>
+                <input type="radio" v-model="enjoyment" value = "3" id = "enj3">
+                <label for = "enj3">3</label>
+                <input type="radio" v-model="enjoyment" value = "4" id = "enj4">
+                <label for = "enj4">4</label>
+                <input type="radio" v-model="enjoyment" value = "5" id = "enj5">
+                <label for = "enj5">5</label>
                 <h4>Difficulty:</h4>
-                <input type="radio" v-model="difficulty" value = "0" id = "0">
-                <label for = "0">0</label>
-                <input type="radio" v-model="difficulty" value = "1" id = "1">
-                <label for = "1">1</label>
-                <input type="radio" v-model="difficulty" value = "2" id = "2">
-                <label for = "2">2</label>
-                <input type="radio" v-model="difficulty" value = "3" id = "3">
-                <label for = "3">3</label>
-                <input type="radio" v-model="difficulty" value = "4" id = "4">
-                <label for = "4">4</label>
-                <input type="radio" v-model="difficulty" value = "5" id = "5">
-                <label for = "5">5</label>
-                <h4>Professor:</h4>
-                <input v-model = "professor" placeholder="Enter Professor">
-                <h4>Semester:</h4>
-                <input v-model = "semester" placeholder="Enter Semester">
-                <h4>Main Assignments:</h4>
-                <textarea v-model = "assignments" placeholder = "Enter Assignments"></textarea>
-                <h4>Overall Thoughts and Suggestions:</h4>
-                <textarea v-model = "thoughts" placeholder = "Enter Thoughts"></textarea>
+                <input type="radio" v-model="difficulty" value = "0" id = "dif0">
+                <label for = "dif0">0</label>
+                <input type="radio" v-model="difficulty" value = "1" id = "dif1">
+                <label for = "dif1">1</label>
+                <input type="radio" v-model="difficulty" value = "2" id = "dif2">
+                <label for = "dif2">2</label>
+                <input type="radio" v-model="difficulty" value = "3" id = "dif3">
+                <label for = "dif3">3</label>
+                <input type="radio" v-model="difficulty" value = "4" id = "dif4">
+                <label for = "dif4">4</label>
+                <input type="radio" v-model="difficulty" value = "5" id = "dif5">
+                <label for = "dif5">5</label>
+                <h4><label for = "prof">Professor:</label></h4>
+                <input id = "prof" v-model = "professor" placeholder="Enter Professor">
+                <h4><label for = "semesterTaken">Semester:</label></h4>
+                <input id = "semesterTaken" v-model = "semester" placeholder="Enter Semester">
+                <h4><label for = "assign">Main Assignments:</label></h4>
+                <textarea id = "assign" v-model = "assignments" placeholder = "Enter Assignments"></textarea>
+                <h4><label for = "thoughtsAndSuggestions">Overall Thoughts and Suggestions:</label></h4>
+                <textarea id = "thoughtsAndSuggestions" v-model = "thoughts" placeholder = "Enter Thoughts"></textarea>
+
                 <div></div>
                 <input type="checkbox" id="checkbox" v-model="checked">
                 <label for="checkbox">Show User Email</label>

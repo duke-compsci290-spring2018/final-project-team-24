@@ -19,7 +19,7 @@
                     <input id = "newPassword" v-model = "newUserPassword" placeholder="Enter Password">
                     <label for="newPassword" class="visuallyhidden">New User Password</label>
                     <form id = "form" @submit.prevent = "storeImage">
-                        <p><label for = "form">Choose User Image:</label>
+                        <p><label for = "files">Choose User Image:</label>
                         <input type="file" id="files" name="files[]" /></p>
                     </form>
                     <button v-on:click = "createUser">Create User</button>

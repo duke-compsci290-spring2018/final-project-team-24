@@ -1,6 +1,6 @@
 <template>
     <div id = "departmentPage">
-        <h1 id = "title">{{currentDepartment.name}}</h1>
+        <h1 id = "title">Department: {{currentDepartment.name}}</h1>
         <div id = "classes">
             <!--TO DO: DISPLAY CLASSES-->
             <ul class="class-list">
