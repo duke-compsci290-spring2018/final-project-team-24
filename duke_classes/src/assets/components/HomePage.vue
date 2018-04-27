@@ -9,7 +9,7 @@
         </ul>
         <div id = "addDepartment" v-show = "currentUser != ''">
             <!--TO DO: ALLOW ONLY USERS OR ADMIN TO ADD DEPARTMENTS-->
-            <input id = "newDep" v-model = "newDepartment" placeholder="Add a new Department" @keyup.enter= "addDepartment(newDepartment)"> 
+            <input id = "newDep" v-model = "newDepartment" placeholder="Add a new Department" @keyup.enter= "addDepartment(newDepartment), clearEdit()"> 
             <label for="newDep" class="visuallyhidden">Create new department with this name</label>
         </div>
         <div id = "editOrRemoveDepartment" v-show = "userIsAdmin">
@@ -22,7 +22,10 @@
                 <label for="editedName" class="visuallyhidden">New name for department being edited</label>
                 <button v-on:click = "editDepartment(departmentToEdit, newName), clearEdit()">Edit</button>
             </p>
-            <p><input @keyup.enter="deleteDepartment(departmentToDelete)" v-model = "departmentToDelete" placeholder="Delete this Department"></p>
+            <p>
+                <input id = "deleteDep" @keyup.enter="deleteDepartment(departmentToDelete),clearEdit()" v-model = "departmentToDelete" placeholder="Delete this Department">
+                <label for="deleteDep" class="visuallyhidden">Delete this department</label>
+            </p>
         </div>
     </div>
 </template>
@@ -39,14 +42,12 @@ export default {
             }
     },
     methods: {
-        clearDepartment: function(){
-           this.newDepartment = ""; 
-        },
         clearEdit: function()
         {
             this.departmentToEdit = "";
             this.newName = "";
             this.newDepartment="";
+            this.departmentToDelete = "";
         }
     }
 }

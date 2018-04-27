@@ -48,17 +48,24 @@
                 <textarea id = "assign" v-model = "assignments" placeholder = "Enter Assignments"></textarea>
                 <label for = "thoughtsAndSuggestions"><h4>Overall Thoughts and Suggestions:</h4></label>
                 <textarea id = "thoughtsAndSuggestions" v-model = "thoughts" placeholder = "Enter Thoughts"></textarea>
-
                 <div></div>
                 <input type="checkbox" id="checkbox" v-model="checked">
                 <label for="checkbox">Show User Email</label>
                 <button v-on:click = "newReview(), toggleAdd()">Add Review</button>
+                <h4 v-show="fieldsNotFilledOut">Please fill out all fields</h4>
             </div>
             <!--TO DO: ALLOW ONLY USERS OR ADMIN TO ADD A REVIEW-->
         </div>
         <div id = "reviews" >
             <h2>Reviews</h2>
-            <input @keyup.enter="orderByEnjoyment(departmentName, classNumber, enjoymentFilter)" v-model = "enjoymentFilter" placeholder="Show this enjoyment">
+            <h3>Filter Reviews:</h3>
+            <input id = "filterEnj" @keyup.enter="orderByEnjoyment(departmentName, classNumber, enjoymentFilter), clearEdit()" v-model = "enjoymentFilter" placeholder="Show this enjoyment">
+            <label for="filterEnj" class="visuallyhidden">Filter by this enjoyment number</label>
+            <input id = "filterDif" @keyup.enter="filterByDifficulty(departmentName, classNumber, difficultyFilter), clearEdit()" v-model = "difficultyFilter" placeholder="Show this difficulty">
+            <label for="filterDif" class="visuallyhidden">Filter by this difficulty number</label>
+            <input id = "filterProf" @keyup.enter="filterByProfessor(departmentName, classNumber, professorFilter), clearEdit()" v-model = "professorFilter" placeholder="Show this professor">
+            <label for="filterProf" class="visuallyhidden">Filter by this professor</label>
+            <button v-on:click="resetFilters(departmentName, classNumber)">Reset Filters</button>
             <ul v-for = "element in currentClass">
                 <li v-show = "element.show">
                     <h4>Overall Enjoyment: {{element.enjoyment}}</h4>
@@ -68,29 +75,13 @@
                     <h4>Overall Thoughts and Suggestions: {{element.thoughts}}</h4>
                     <h4>Date Submitted: {{element.date}}</h4>
                     <h4>User: {{element.userShow}}</h4>
+                    <h4>Votes: {{element.votes}}</h4>
+                    <button v-on:click="upVote(departmentName, classNumber, element.votes, element.user)">Up Vote</button>
+                    <button v-on:click="downVote(departmentName, classNumber, element.votes, element.user)">Down Vote</button>
+                    <button v-on:click="removeReview">Delete Review</button>
                 </li>
             </ul>
-            
             <!--TO DO: DISPLAY ALL REVIEWS-->
-        </div>
-        <div id = "editReviews">
-            <h2>Edit reviews</h2>
-            <h4>Overall Enjoyment:</h4>
-            <input type="radio" v-model="enjoymentEdit" value = "0" id = "editEnj0">
-            <label for = "editEnj0">0</label>
-            <input type="radio" v-model="enjoymentEdit" value = "1" id = "editEnj1">
-            <label for = "editEnj1">1</label>
-            <input type="radio" v-model="enjoymentEdit" value = "2" id = "editEnj2">
-            <label for = "editEnj2">2</label>
-            <input type="radio" v-model="enjoymentEdit" value = "3" id = "editEnj3">
-            <label for = "editEnj3">3</label>
-            <input type="radio" v-model="enjoymentEdit" value = "4" id = "editEnj4">
-            <label for = "editEnj4">4</label>
-            <input type="radio" v-model="enjoymentEdit" value = "5" id = "editEnj5">
-            <label for = "editEnj5">5</label>
-            
-            <button v-on:click = "changeReview">Edit Review</button>
-            <!--TO DO: ALLOW ONLY ADMIN TO EDIT REVIEWS-->
         </div>
         <button v-on:click = "returnToHome">Return To Home Page</button>
     </div>
@@ -98,7 +89,7 @@
 <script>
 export default {
     name: "ClassReviews",
-    props: ["currentClass", "addReview", "departmentName", "classNumber", "avgEnjoyment", "avgDifficulty", "currentUser", "userIsAdmin", "returnToHome", "editReview", "orderByEnjoyment", "upVote", "downVote"],
+    props: ["currentClass", "addReview", "departmentName", "classNumber", "avgEnjoyment", "avgDifficulty", "currentUser", "userIsAdmin", "returnToHome", "orderByEnjoyment", "upVote", "downVote", "resetFilters" , "filterByDifficulty", "filterByProfessor", "deleteReview"],
     data(){
         return{
             enjoyment: "",
@@ -110,10 +101,27 @@ export default {
             checked: false,
             enjoymentEdit:"",
             enjoymentFilter:"",
-            showAddReview: false
+            difficultyFilter:"",
+            professorFilter:"",
+            showAddReview: false,
+            fieldsNotFilledOut: false
         }
     },
     methods:{
+        clearEdit: function()
+        {
+            this.enjoyment = "";
+            this.difficulty = "";
+            this.professor="";
+            this.semester="";
+            this.assignments="";
+            this.thoughts="";
+            this.checked=false;
+            this.enjoymentFilter="";
+            this.difficultyFilter="";
+            this.professorFilter="";
+            
+        },
         newReview: function()
         {
             if(this.checked == false)
@@ -139,11 +147,19 @@ export default {
             }
             var crop = this.currentUser.indexOf("@");
             var userCrop = this.currentUser.substring(0,crop);
-            this.addReview(this.departmentName, this.classNumber, userCrop, reviewInfo);   
+            if(this.enjoyment!="" && this.difficulty!="" && this.professor!="" && this.semester!="" && this.assignments!="" && this.thoughts!="" && this.user!=""){
+                this.addReview(this.departmentName, this.classNumber, userCrop, reviewInfo); 
+                this.fieldsNotFilledOut=false;
+                this.clearEdit();
+            }
+            else{
+                this.fieldsNotFilledOut=true;
+            }
         },
-        changeReview: function()
-        {
-            this.editReview(this.departmentName, this.classNumber, this.enjoymentEdit);
+        removeReview:function(){
+            var crop = this.currentUser.indexOf(".");
+            var userCrop = this.currentUser.substring(0,crop);
+            this.deleteReview(this.departmentName, this.classNumber, userCrop);  
         },
         toggleAdd: function()
         {

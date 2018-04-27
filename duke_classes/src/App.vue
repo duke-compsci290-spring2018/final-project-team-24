@@ -5,8 +5,8 @@
             <li>
                 <div id = "welcome">
                     <!--TO DO: SHOW LOGGED IN USER-->
-                    <h1><img v-bind:src="userImage" v-show = "userImage != ''" alt = "User's Profile Picture">
-                        Welcome {{currentUser}}!</h1>
+                    <img v-bind:src="userImage" v-show = "userImage != ''" alt = "User's Profile Picture">
+                    <h1>Welcome {{currentUser}}!</h1>
                     <button v-on:click = "requestAdmin(currentUser)" v-show = "!userIsAdmin && currentUser != ''">Request Administrator Status</button>
                 </div>
             </li>
@@ -47,6 +47,7 @@
                   :addDepartment = "addDepartment" 
                   :changeCurrentDepartment = "changeCurrentDepartment"
                   :editDepartment = "editDepartment"
+                  :deleteDepartment="deleteDepartment"
                   :currentUser = "currentUser"
                   :userIsAdmin = "userIsAdmin"
                   >
@@ -61,7 +62,7 @@
                         :currentUser = "currentUser"
                         :userIsAdmin = "userIsAdmin"
                         :returnToHome = "returnToHome"
-                        :deleteDepartment= "deleteDepartment"
+                        :deleteClass= "deleteClass"
         >
         </departmentPage>
         <!--CLASS REVIEWS PAGE-->
@@ -78,6 +79,10 @@
                       :orderByEnjoyment= "orderByEnjoyment"
                       :upVote="upVote"
                       :downVote="downVote"
+                      :resetFilters="resetFilters"
+                      :filterByDifficulty="filterByDifficulty"
+                      :filterByProfessor="filterByProfessor"
+                      :deleteReview= "deleteReview"
                         >
         </classReviews>
         <h3 id = "logout">Not you? <button v-on:click = "logout">Logout</button></h3>
@@ -146,26 +151,6 @@
         },
         //methods
         methods:{
-            testing: function()
-            {
-                function compare(a, b) {
-                  if (a.enjoyment < b.enjoyment)
-                    return -1;
-                  if (a.enjoyment > b.enjoyment)
-                    return 1;
-                  return 0;
-                }
-                console.log(this.currentClass);
-    //            return this.arrays.sort(Object.values(this.currentClass));
-                for(var item in this.currentClass)
-                    {
-                        console.log(item);
-                        reviewsRef.child(item).orderByChild("enjoyment").on("child_added", function(data) {
-                                console.log(data.val().name)});
-                    }
-                
-//                console.log(Object.values(this.currentClass).sort(compare));
-            },
             createUser: function()
             {
                 var input = document.getElementById('files');
@@ -188,13 +173,10 @@
                 input.value = "";
             },
             addUserImage (user, url) {
-                console.log("here");
-                
                 for(var i = 0; i <this.users.length; i ++)
                     {
                         if(this.users[i].email == user)
                             {
-                                console.log("hereagain");
                                 console.log(url);
                                 usersRef.child(this.users[i]['.key']).update({image: url});
                             }
@@ -262,13 +244,10 @@
             deleteDepartment: function(department){
                 for(var i=0; i<this.departments.length; i++){
                     if(this.departments[i].name==department){
-
                             var hasClasses=true;
                             var count=0; 
                             while(hasClasses){
                                 var hasMoreClasses=false; 
-                               // console.log(this.classes.length); 
-                                //console.log(count); 
                                 for(var k=0; k< this.classes.length; k++){
                                     
                                     if(this.classes[k].class.includes(department)){
@@ -286,7 +265,7 @@
                             
                         departmentsWithClasses.child(this.departments[i]['.key']).remove();
                     }
-                }  
+                }    
             },
             addClass: function(department, classNumber)
             {
@@ -331,6 +310,7 @@
                 for(var i=0; i<this.departments.length; i++){
                     if(this.departments[i].name==department)
                     {
+                        console.log(this.departments[i].name);
                         departmentsWithClasses.child(this.departments[i]['.key']).child('classes').child(number).remove();
                         departmentsWithClasses.child(this.departments[i]['.key']).child('classes').child(newNumber).update({number:newNumber});
                         
@@ -338,13 +318,32 @@
                         {
                             if(this.classes[j].class==department+number){
                                 classesWithReviews.child(this.classes[j]['.key']).update({class: department+ newNumber});
+                                this.changeCurrentDepartment(this.departments[i]);
                             }
                         }
-                        
-                        this.changeCurrentDepartment(this.departments[i]);
   
                     }
-                }  
+                }    
+            },
+            deleteClass: function(number, department){
+                var departmentIndex=0;
+                for(var i=0; i<this.departments.length; i++){
+                    if(this.departments[i].name==department){
+                        departmentsWithClasses.child(this.departments[i]['.key']).child('classes').child(number).remove();
+                        departmentIndex=i;
+                    }
+                }
+                var reviewKey="";
+                for(var i=0; i<this.classes.length; i++){
+                    if(this.classes[i].class==department+number){
+                        reviewKey=this.classes[i].reviews;
+                        classesWithReviews.child(this.classes[i]['.key']).remove();
+                    }
+                }
+                console.log(reviewKey);
+                reviewsRef.child(reviewKey).remove(); 
+                this.changeCurrentDepartment(this.departments[departmentIndex]);
+                
             },
             changeCurrentDepartment(department)
             {
@@ -392,7 +391,17 @@
                     }
                 this.changeCurrentClass(department, classNumber);
             },
-             upVote(department, classNumber, votes, user){
+            deleteReview: function(department, classNumber, user){
+              for(var i=0; i<this.classes.length; i++){
+                  if(this.classes[i].class==department+classNumber){
+                      //removes reivew from review reference
+                      reviewsRef.child(this.classes[i].reviews).child(user).remove();
+                  }
+              } 
+                this.changeCurrentClass(department, classNumber);
+            },
+            upVote: function(department, classNumber, votes, user){
+                console.log(user);
                 for(var j=0; j<this.classes.length; j++)
                     {
                         if(this.classes[j].class==department+classNumber)
@@ -403,18 +412,33 @@
                                 {
                                     if(this.reviews[i]['.key'] == reviewKey)
                                         {
+                                            console.log("HERE");
                                             for(var element in this.reviews[i]){
-                                                if(element.user==user){
-                                                    element.votes+=1;
+                                                if(element != ".key")
+                                                   { 
+                                                var curUser="";
+                                                    reviewsRef.child(reviewKey).child(element).child('user').once('value', function(snapshot){
+                                                        curUser=snapshot.val();
+                                                       });
+                                                if(curUser==user){
+                                                    var tempVotes=0;
+                                                    reviewsRef.child(reviewKey).child(element).child('votes').once('value', function(snapshot){
+                                                        tempVotes=snapshot.val();
+                                                       });
+                                                    tempVotes++;
+                                                    reviewsRef.child(reviewKey).child(element).update({votes: tempVotes});
                                                     }
-                                            }           
+                                            }
+                                                       
+                                            }
                                         }
                                 }
                             }
                         }
+                this.changeCurrentClass(department, classNumber);
                 },
                    
-            downVote(department, classNumber, votes, user){
+            downVote: function(department, classNumber, votes, user){
                 for(var j=0; j<this.classes.length; j++)
                     {
                         if(this.classes[j].class==department+classNumber)
@@ -425,13 +449,31 @@
                                 {
                                     if(this.reviews[i]['.key'] == reviewKey)
                                         {
-                                            for(var element in this.reviews[i]){
-                                                if(element.user==user){
-                                                    element.votes-=1;
-                                                    if(element.votes<-10){
-                                                        reviewsRef.child(this.classes[j].reviews).child(user).remove();
+                                       for(var element in this.reviews[i]){
+                                                if(element != ".key")
+                                                   { 
+                                                var curUser="";
+                                                    reviewsRef.child(reviewKey).child(element).child('user').once('value', function(snapshot){
+                                                        curUser=snapshot.val();
+                                                       });
+                                                if(curUser==user){
+                                                    var tempVotes=0;
+                                                    reviewsRef.child(reviewKey).child(element).child('votes').once('value', function(snapshot){
+                                                        tempVotes=snapshot.val();
+                                                       });
+                                                    tempVotes--;
+                                                    reviewsRef.child(reviewKey).child(element).update({votes: tempVotes});
+                                                    
+                                                    var checkVotes=0;
+                                                    reviewsRef.child(reviewKey).child(element).child('votes').once('value', function(snapshot){
+                                                        checkVotes=snapshot.val();
+                                                       });
+                                                    if(checkVotes<=-10){
+                                                        reviewsRef.child(reviewKey).child(element).remove();
                                                     }
                                                     }
+                                            }
+                                                       
                                             }
                                                        
                                                        
@@ -439,26 +481,7 @@
                                 }
                             }
                         }
-            },
-            editReview(department, classNumber, enjoyment){
-                console.log("HERE");
-                console.log
-                for(var j=0; j<this.classes.length; j++)
-                    {
-                        if(this.classes[j].class==department+classNumber)
-                        {   
-
-                            for(var i=0; i<this.classes[j].reviews.length; i++){
-                                if(this.classes[j].reviews[i].assignments=="big"){
-                                    console.log("HERE");
-                                    classesWithReviews.child(this.classes[j]['.key']).child('reviews').child(this.classes[j].reviews[i]['.key']).update({enjoyment:enjoyment});
-                                    this.changeCurrentClass(department, classNumber);
-                                }
-                                
-                                
-                            }
-                        }
-                    }
+                 this.changeCurrentClass(department, classNumber);
             },
             avgEnjoyment(department, classNumber)
             {
@@ -535,7 +558,34 @@
                         return "N/A";
                     }
             },
-            orderByEnjoyment(departmentNumber, classNumber, enjoymentFilter){
+            resetFilters: function(department, classNumber){
+                for(var j=0; j<this.classes.length; j++)
+                    {
+                        if(this.classes[j].class==department+classNumber)
+                        {
+                            var reviewKey = this.classes[j].reviews;
+                            
+                            for(var i = 0; i < this.reviews.length; i ++)
+                                {
+                                    if(this.reviews[i]['.key'] == reviewKey)
+                                        {
+                                            console.log(reviewKey);
+                                           
+                                            for(var element in this.reviews[i])
+                                                {
+                                                    if(element != ".key" && element != "show")
+                                                   { 
+                                                      reviewsRef.child(reviewKey).child(element).update({show:true}); 
+                                                   }
+                                                }
+                                        }
+                                }
+                        }
+                    }
+                 this.changeCurrentClass(department, classNumber);
+            },
+            orderByEnjoyment: function(department, classNumber, enjoymentFilter){
+                this.resetFilters(department, classNumber);
                 //console.log(departmentNumber+classNumber);
                 //console.log(this.currentClass);
                 console.log(enjoymentFilter)
@@ -543,9 +593,121 @@
                     {
                         if(this.classes[j].class==department+classNumber)
                         {
+                            var reviewKey = this.classes[j].reviews;
+                            
+                            for(var i = 0; i < this.reviews.length; i ++)
+                                {
+                                    if(this.reviews[i]['.key'] == reviewKey)
+                                        {
+                                            console.log(reviewKey);
+                                           
+                                            for(var element in this.reviews[i])
+                                                {
+                                                    if(element != ".key" && element != "show")
+                                                   { 
+                                                    var curEnjoyment=0;
+                                                    reviewsRef.child(reviewKey).child(element).child('enjoyment').once('value', function(snapshot){
+                                                        curEnjoyment=snapshot.val();
+                                                       });
+                                                       console.log(curEnjoyment);
+                                                    if(parseInt(curEnjoyment) !=enjoymentFilter)
+                                                   { 
+                                                       console.log("HERE");
+                                                     reviewsRef.child(reviewKey).child(element).update({show:false});
+                                                        
+                                                   }
+                                                       else{
+                                                           reviewsRef.child(reviewKey).child(element).update({show:true});
+                                                       }
+                                                   }
+                                                }
+                                        }
+                                }
                         }
                     }
+                this.changeCurrentClass(department, classNumber);
 
+            },
+            filterByDifficulty: function(department, classNumber, difficultyFilter){
+                this.resetFilters(department, classNumber);
+ 
+                for(var j=0; j<this.classes.length; j++)
+                    {
+                        if(this.classes[j].class==department+classNumber)
+                        {
+                            var reviewKey = this.classes[j].reviews;
+                            
+                            for(var i = 0; i < this.reviews.length; i ++)
+                                {
+                                    if(this.reviews[i]['.key'] == reviewKey)
+                                        {
+                                           // console.log(reviewKey);
+                                           
+                                            for(var element in this.reviews[i])
+                                                {
+                                                    if(element != ".key" && element != "show")
+                                                   { 
+                                                    var curDifficulty=0;
+                                                    reviewsRef.child(reviewKey).child(element).child('difficulty').once('value', function(snapshot){
+                                                        curDifficulty=snapshot.val();
+                                                       });
+                                                       console.log(curDifficulty);
+                                                    if(parseInt(curDifficulty) !=difficultyFilter)
+                                                   { 
+                                                       console.log("HERE");
+                                                     reviewsRef.child(reviewKey).child(element).update({show:false});
+                                                        
+                                                   }
+                                                       else{
+                                                           reviewsRef.child(reviewKey).child(element).update({show:true});
+                                                       }
+                                                   }
+                                                }
+                                        }
+                                }
+                        }
+                    }
+                this.changeCurrentClass(department, classNumber);
+            },
+            filterByProfessor: function(department, classNumber, professorFilter){
+                this.resetFilters(department, classNumber);
+                for(var j=0; j<this.classes.length; j++)
+                    {
+                        if(this.classes[j].class==department+classNumber)
+                        {
+                            var reviewKey = this.classes[j].reviews;
+                            
+                            for(var i = 0; i < this.reviews.length; i ++)
+                                {
+                                    if(this.reviews[i]['.key'] == reviewKey)
+                                        {
+                                           // console.log(reviewKey);
+                                           
+                                            for(var element in this.reviews[i])
+                                                {
+                                                    if(element != ".key")
+                                                   { 
+                                                    var curProfessor="";
+                                                    reviewsRef.child(reviewKey).child(element).child('professor').once('value', function(snapshot){
+                                                        curProfessor=snapshot.val();
+                                                       });
+                                                       //console.log(curDifficulty);
+                                                    if(curProfessor !=professorFilter)
+                                                   { 
+                                                       console.log("HERE");
+                                                     reviewsRef.child(reviewKey).child(element).update({show:false});
+                                                        
+                                                   }
+                                                       else{
+                                                           reviewsRef.child(reviewKey).child(element).update({show:true});
+                                                       }
+                                                   }
+                                                }
+                                        }
+                                }
+                        }
+                    }
+                this.changeCurrentClass(department, classNumber);
             }
         }
     }
@@ -607,11 +769,14 @@
 /*        width: 50%;*/
         margin-top: 10px;
 /*        margin-right: 45%;*/
-        text-align: left;
+        text-align: center;
+        border: 3px solid black;
+        
     }
     #welcome img{
-        width: "15%";
-        height: "15%";
+        width: 20%;
+        height: 20%;
+        
     }
     #logout{
         color: #595959;
