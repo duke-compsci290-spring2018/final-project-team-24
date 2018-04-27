@@ -40,13 +40,13 @@
                 <label for = "dif4">4</label>
                 <input type="radio" v-model="difficulty" value = "5" id = "dif5">
                 <label for = "dif5">5</label>
-                <h4><label for = "prof">Professor:</label></h4>
+                <label for = "prof"><h4>Professor:</h4></label>
                 <input id = "prof" v-model = "professor" placeholder="Enter Professor">
-                <h4><label for = "semesterTaken">Semester:</label></h4>
+                <label for = "semesterTaken"><h4>Semester:</h4></label>
                 <input id = "semesterTaken" v-model = "semester" placeholder="Enter Semester">
-                <h4><label for = "assign">Main Assignments:</label></h4>
+                <label for = "assign"><h4>Main Assignments:</h4></label>
                 <textarea id = "assign" v-model = "assignments" placeholder = "Enter Assignments"></textarea>
-                <h4><label for = "thoughtsAndSuggestions">Overall Thoughts and Suggestions:</label></h4>
+                <label for = "thoughtsAndSuggestions"><h4>Overall Thoughts and Suggestions:</h4></label>
                 <textarea id = "thoughtsAndSuggestions" v-model = "thoughts" placeholder = "Enter Thoughts"></textarea>
 
                 <div></div>
@@ -76,18 +76,18 @@
         <div id = "editReviews">
             <h2>Edit reviews</h2>
             <h4>Overall Enjoyment:</h4>
-            <input type="radio" v-model="enjoymentEdit" value = "0" id = "0">
-            <label for = "0">0</label>
-            <input type="radio" v-model="enjoymentEdit" value = "1" id = "1">
-            <label for = "1">1</label>
-            <input type="radio" v-model="enjoymentEdit" value = "2" id = "2">
-            <label for = "2">2</label>
-            <input type="radio" v-model="enjoymentEdit" value = "3" id = "3">
-            <label for = "3">3</label>
-            <input type="radio" v-model="enjoymentEdit" value = "4" id = "4">
-            <label for = "4">4</label>
-            <input type="radio" v-model="enjoymentEdit" value = "5" id = "5">
-            <label for = "5">5</label>
+            <input type="radio" v-model="enjoymentEdit" value = "0" id = "editEnj0">
+            <label for = "editEnj0">0</label>
+            <input type="radio" v-model="enjoymentEdit" value = "1" id = "editEnj1">
+            <label for = "editEnj1">1</label>
+            <input type="radio" v-model="enjoymentEdit" value = "2" id = "editEnj2">
+            <label for = "editEnj2">2</label>
+            <input type="radio" v-model="enjoymentEdit" value = "3" id = "editEnj3">
+            <label for = "editEnj3">3</label>
+            <input type="radio" v-model="enjoymentEdit" value = "4" id = "editEnj4">
+            <label for = "editEnj4">4</label>
+            <input type="radio" v-model="enjoymentEdit" value = "5" id = "editEnj5">
+            <label for = "editEnj5">5</label>
             
             <button v-on:click = "changeReview">Edit Review</button>
             <!--TO DO: ALLOW ONLY ADMIN TO EDIT REVIEWS-->
