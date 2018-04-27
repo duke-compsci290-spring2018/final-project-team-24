@@ -1,29 +1,42 @@
 <template>
     <div id="app">
-        <h1>{{ msg }}</h1>
-        <div id = "login">
-            <!--TO DO: INSERT LOGIN FIELDS AND BUTTONS-->
-            <h1>Sign Up Here:</h1>
-            <input v-model = "newUserEmail" placeholder="Enter Email">
-            <input v-model = "newUserPassword" placeholder="Enter Password">
-            <form id = "form" @submit.prevent = "storeImage">
-                <label>Choose User Image:</label>
-                <input type="file" id="files" name="files[]" />
-            </form>
-            <button v-on:click = "createUser">Create User</button>
-            <h1>Already have an account? Login here:</h1>
-            <input v-model = "loginEmail" placeholder="Enter Email">
-            <input v-model = "loginPassword" placeholder="Enter Password">
-            <button v-on:click = "login">Login</button>
-            <h1 v-show = "userIsAdmin">Admin?</h1>
-            <button v-show = "userIsAdmin" v-on:click = "showAdminRequests = true">Show Administrator Requests</button>
-        </div>
-        <div id = "welcome">
-            <!--TO DO: SHOW LOGGED IN USER-->
-            <h1>Welcome {{currentUser}}</h1>
-            <img v-bind:src="userImage" width="25%" height="25%" v-show = "userImage != ''">
-            <button v-on:click = "logout">Logout</button>
-        </div>
+        <h1 id= "title">RateMyDukeClasses</h1>
+        <ul>
+            <li>
+                <div id = "welcome">
+                    <!--TO DO: SHOW LOGGED IN USER-->
+                    <h1><img v-bind:src="userImage" v-show = "userImage != ''" alt = "User's Profile Picture">
+                        Welcome {{currentUser}}!</h1>
+                    <button v-on:click = "requestAdmin(currentUser)" v-show = "!userIsAdmin && currentUser != ''">Request Administrator Status</button>
+                </div>
+            </li>
+            <li>
+                <div id = "login">
+                    <!--TO DO: INSERT LOGIN FIELDS AND BUTTONS-->
+                    <h3>Sign Up Here:</h3>
+                    <input v-model = "newUserEmail" placeholder="netID@duke.edu">
+                    <input v-model = "newUserPassword" placeholder="Enter Password">
+                    <form id = "form" @submit.prevent = "storeImage">
+                        <p><label>Choose User Image:</label>
+                        <input type="file" id="files" name="files[]" /></p>
+                    </form>
+                    <button v-on:click = "createUser">Create User</button>
+                    <h3>Already have an account? Login here:</h3>
+                    <input v-model = "loginEmail" placeholder="Enter Email">
+                    <input v-model = "loginPassword" placeholder="Enter Password">
+                    <button v-on:click = "login">Login</button>
+                    <h3 v-show = "userIsAdmin">Admin?</h3>
+                    <button v-show = "userIsAdmin" v-on:click = "adminPage">Show Administrator Requests</button>
+                </div>
+            </li>
+            
+        </ul>
+        <!--ADMIN REQUESTS PAGE-->
+        <adminRequests v-show = "showAdminRequests"
+                       :users = "users"
+                       :grantAdmin = "grantAdmin"
+                       :returnToHome = "returnToHome">
+        </adminRequests>
         <!--HOME PAGE WITH ALL THE DEPARTMENTS-->
         <homePage v-show = "showHomePage"
                   :departments = "departments" 
@@ -63,11 +76,7 @@
                       :downVote="downVote"
                         >
         </classReviews>
-        <!--ADMIN REQUESTS PAGE-->
-        <adminRequests v-show = "showAdminRequests"
-                       :users = "users"
-                       :returnToHome = "returnToHome">
-        </adminRequests>
+        <h3 id = "logout">Not you? <button v-on:click = "logout">Logout</button></h3>
     </div>
 </template>
 
@@ -99,7 +108,6 @@
         name: 'app',
         data () {
             return {
-                msg: 'Welcome to Your Vue.js App',
                 currentDepartment: [],
                 currentClass: [],
                 currentDepartmentName: "",
@@ -164,7 +172,7 @@
                         usersRef.push({
                             email: this.newUserEmail,
                             password: this.newUserPassword,
-                            admin: true,
+                            admin: false,
                             submittedAdminRequest: false
                         });
                         storageRef.child('images/' + file.name)
@@ -215,9 +223,26 @@
                     {
                         if(this.users[i].email == userEmail)
                             {
-                                usersRef.child(this.users[i]['.key']).update({admin: true});
+                                usersRef.child(this.users[i]['.key']).update({admin: true, submittedAdminRequest: false});
                             }
                     }
+            },
+            requestAdmin: function(userEmail)
+            {
+                for(var i = 0; i< this.users.length;i++)
+                    {
+                        if(this.users[i].email == userEmail)
+                            {
+                                usersRef.child(this.users[i]['.key']).update({submittedAdminRequest: true});
+                            }
+                    }
+            },
+            adminPage: function()
+            {
+                this.showAdminRequests = true;
+                this.showClassReviews = false;
+                this.showDepartmentPage = false;
+                this.showHomePage = false;    
             },
             returnToHome: function()
             {
@@ -524,30 +549,69 @@
 
 <style>
 /*This is copied from the webpack simple and should be changed*/
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    body{
+        background-color: gray;
+        background-image: url("https://img.etsystatic.com/il/b4b112/804784173/il_570xN.804784173_7kpm.jpg?version=0");
+        background-repeat: repeat;
+        background-size: 5%;
+    }
+    #app {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #004d99;
+/*        text-shadow: 1px 1px #595959;*/
+        margin: 5%;
+        background-color: #e6e6e6;
 
-h1, h2 {
-  font-weight: normal;
-}
+    }
+    h1, h2 {
+        font-weight: normal;
+    }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+    li {
+        display: inline-block;
+        margin: 0 10px;
+    }
 
-a {
-  color: #42b983;
-}
+    a {
+        color: #42b983;
+    }
+    #title{
+        font-size: 60px;
+        margin-top: 5px;
+        color: #0000e6;
+    }
+    #login{
+        display: inline-block;
+        border: 3px solid black;
+        padding: 5px;
+/*        width: 40%;*/
+        color: #595959;
+/*        margin-bottom: 25%;*/
+/*        margin-left: 55%;*/
+    }
+    #welcome{
+        display: inline-block;
+        padding: 5px;
+/*        width: 50%;*/
+        margin-top: 10px;
+/*        margin-right: 45%;*/
+        text-align: left;
+    }
+    #welcome img{
+        width: "15%";
+        height: "15%";
+    }
+    #logout{
+        color: #595959;
+        padding: 5px;
+        text-align: left;
+    }
 </style>

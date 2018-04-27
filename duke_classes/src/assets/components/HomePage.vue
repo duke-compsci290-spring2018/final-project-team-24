@@ -1,22 +1,23 @@
 <template>
     <div id = "homePage">
-        <h1>Home Page</h1>
-        <ul id = "departments" v-for = "element in departments">
+        <h1 id = "title">Home</h1>
+        <ul id = "departments">
             <!--TO DO: DISPLAY DEPARTMENTS-->
-            <button v-on:click = "changeCurrentDepartment(element)">{{element.name}}</button>
+            <li v-for = "element in departments">
+                <button v-on:click = "changeCurrentDepartment(element)">{{element.name}}</button>
+            </li>
         </ul>
         <div id = "addDepartment" v-show = "currentUser != ''">
             <!--TO DO: ALLOW ONLY USERS OR ADMIN TO ADD DEPARTMENTS-->
             <input v-model = "newDepartment" placeholder="Add a new Department" @keyup.enter= "addDepartment(newDepartment)">  
         </div>
-        <div id = "editDepartment" v-show = "userIsAdmin">
+        <div id = "editOrRemoveDepartment" v-show = "userIsAdmin">
             <!--TO DO: ALLOW ONLY ADMIN TO EDIT DEPARTMENTS-->
-            <input v-model = "departmentToEdit" placeholder="Edit this Department">
+            <h4>Want to edit or delete?</h4>
+            <p><input v-model = "departmentToEdit" placeholder="Edit this Department">
             <input v-model = "newName" placeholder="New Name for Department">
-            <button v-on:click = "editDepartment(departmentToEdit, newName), clearEdit()">Edit</button>
-        </div>
-        <div id="removeDepartment">
-            <input @keyup.enter="deleteDepartment(departmentToDelete)" v-model = "departmentToDelete" placeholder="Delete this Department">
+            <button v-on:click = "editDepartment(departmentToEdit, newName), clearEdit()">Edit</button></p>
+            <p><input @keyup.enter="deleteDepartment(departmentToDelete)" v-model = "departmentToDelete" placeholder="Delete this Department"></p>
         </div>
     </div>
 </template>
@@ -46,4 +47,16 @@ export default {
 }
 </script>
 <style>
+    #departments button{
+        border-radius: 8px;
+        font-size: 20px;
+        background-color: #0066ff;
+        border: 2px solid #0000e6;  
+        color: white;
+    }
+    #editOrRemoveDepartment{
+        line-height: .05cm;
+        text-align: center;
+        margin-left: 70%;
+    }
 </style>

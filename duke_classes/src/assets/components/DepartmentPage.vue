@@ -1,6 +1,6 @@
 <template>
     <div id = "departmentPage">
-        <h1>{{currentDepartment.name}}</h1>
+        <h1 id = "title">{{currentDepartment.name}}</h1>
         <div id = "classes">
             <!--TO DO: DISPLAY CLASSES-->
             <ul class="class-list">
@@ -14,6 +14,7 @@
             <!--TO DO: ALLOW ONLY USERS OR ADMIN TO ADD CLASSES-->
         </div>
         <div id = "editClasses" v-show = "userIsAdmin">
+            <h4>Want to edit or delete?</h4>
             <input v-model = "classToEdit" placeholder="Edit this Class">
             <input v-model = "newNumber" placeholder="New Number for Class">
             <button v-on:click = "editClasses(classToEdit, newNumber, currentDepartment.name), clearEdit()">Edit</button>
@@ -47,4 +48,16 @@ export default {
 }
 </script>
 <style>
+    #classes button{
+        border-radius: 8px;
+        font-size: 20px;
+        background-color: #0066ff;
+        border: 2px solid #0000e6;  
+        color: white;
+    }
+    #editClasses{
+        line-height: .05cm;
+        text-align: center;
+        margin-left: 70%;
+    }
 </style>
