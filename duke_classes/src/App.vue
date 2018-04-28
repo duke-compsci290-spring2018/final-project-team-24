@@ -770,7 +770,7 @@
         margin-top: 10px;
 /*        margin-right: 45%;*/
         text-align: center;
-        border: 3px solid black;
+/*        border: 3px solid black;*/
         
     }
     #welcome img{

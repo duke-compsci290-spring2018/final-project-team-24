@@ -10,15 +10,19 @@ Date Started: 4/14/18
 
 Date Completed: 4/29/18
 
-Time Spent: 
+Time Spent: 50 hours
 
 ### What makes our application useful?
+
+Our application is useful, because it allows students to get information on the classes that they are taking or thinking about taking in terms of the assignments and peer suggestions. Syllabi are not always available at registration time, so it would be helpful if Duke students could pool together their knowledge to create a place for students to learn more about what they will learn in a particular class and what the differences are when different professors teach the same class. RateMyProfessor lacks in this aspect, because many times a professor will have a review but not one that is relevant to the class that the student is interested in taking. Because of this, the reviews are not always helpful. Our website will allow students to search for information by class first before just jumping to the review of a certain professor.
 
 ### Special instructions
 
 ### References for Database
 
 ### Framework Choice
+
+We chose to use Nodejs because we thought that components would be the best way to organize our web application. We have different components and features, so Node would allow us to show certain components depending on the user input and also allow us to pass methods and information between the components. Also, it helped us keep our styling and structures organized, making it easy to make changes incrementaly.
 
 ### Online Resources
 * [Ordering Lists](https://stackoverflow.com/questions/43579035/using-vuefire-how-do-i-order-my-list-by-date-in-descending-order-newest-to-old)
