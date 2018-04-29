@@ -266,6 +266,11 @@
                 this.showClassReviews = false;
                 this.showDepartmentPage = false;
                 this.showHomePage = true;  
+                this.currentDepartment = [],
+                this.currentClass = [],
+                this.currentDepartmentName = "";
+                this.currentClassNumber = "";
+                this.reviewKey = "";
             },
             addDepartment: function(department)
             {
@@ -330,6 +335,10 @@
                     this.checkFieldsDpt=true; 
                     needsToBeAdded=1;
                 }
+                if(classNumber.includes(".")||classNumber.includes("#")||classNumber.includes("$") || classNumber.includes("[") ){
+                    needsToBeAdded=1;
+                    this.checkFieldsDpt=true;
+                }
                 
                 //check if already a class
                 for(var i=0; i<this.classes.length; i++){
