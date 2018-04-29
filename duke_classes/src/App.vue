@@ -191,7 +191,7 @@
                         storageRef.child('images/' + file.name)
                                 .put(file)
                                 .then(snapshot =>  this.addUserImage(email, password, snapshot.downloadURL));
-                        alert("User creation successful! Please log in")
+                        alert("User creation successful! Please log in");
                     }
                 //not a duke email
                 else if(exists)
@@ -266,7 +266,7 @@
                 this.currentUser = "";
                 this.userIsAdmin = false;
                 this.userImage = "";
-                alert("You have been logged out")
+                alert("You have been logged out");
             },
             grantAdmin: function(userEmail)
             {
@@ -322,7 +322,7 @@
             addDepartment: function(department)
             {
                 
-                if(department==""){
+                if(department.includes(".")||department.includes("#")||department.includes("$") || department.includes("[") ||department==""){
                     this.checkFieldsHP=true;
                     alert("Please fill out all fields");
                 }
@@ -386,10 +386,10 @@
                     needsToBeAdded=1;
                     alert("Please fill out all fields");
                 }
-                if(classNumber.includes(".")||classNumber.includes("#")||classNumber.includes("$") || classNumber.includes("[") ){
+                else if(classNumber.includes(".")||classNumber.includes("#")||classNumber.includes("$") || classNumber.includes("[") || isNaN(parseInt(classNumber))){
                     needsToBeAdded=1;
                     this.checkFieldsDpt=true;
-                    alert("Make sure your class number is only numbers!")
+                    alert("Make sure your class number is only numbers!");
                 }
                 
                 //check if already a class
@@ -401,12 +401,12 @@
                         alert("This class already exists!");
                     }
                 }
-                //not a number
-                if(isNaN(parseInt(classNumber))){
-                    needsToBeAdded=1;
-                    this.checkFieldsDpt=true;
-                    alert("Make sure your class number is only numbers!")
-                }
+//                //not a number
+//                if(isNaN(parseInt(classNumber))){
+//                    needsToBeAdded=1;
+//                    this.checkFieldsDpt=true;
+//                    alert("Make sure your class number is only numbers!")
+//                }
                 if(needsToBeAdded==0){
                     console.log("ADDEd");
                     var found=0;
@@ -478,7 +478,7 @@
                 if(found==0){
                     this.checkFieldsDpt=true;
                     canSwitch=1; 
-                    alert("Could not find class to edit")
+                    alert("Could not find class to edit");
                 }
                 //check if newNumber is already a class
                 var foundNew=0; 
