@@ -7,7 +7,6 @@
                     <!--TO DO: SHOW LOGGED IN USER-->
                     <img v-bind:src="userImage" v-show = "userImage != ''" alt = "User's Profile Picture">
                     <h1>Welcome {{currentUser}}!</h1>
-                    <button v-on:click = "requestAdmin(currentUser)" v-show = "!userIsAdmin && currentUser != ''">Request Administrator Status</button>
                 </div>
             </li>
             <li>
@@ -34,6 +33,7 @@
                     </div>
                     <h3 v-show = "userIsAdmin">Admin?</h3>
                     <button v-show = "userIsAdmin" v-on:click = "adminPage">Show Administrator Requests</button>
+                    <button v-on:click = "requestAdmin(currentUser)" v-show = "!userIsAdmin && currentUser != ''">Request Administrator Status</button>
                 </div>
             </li>
             
@@ -165,6 +165,7 @@
                 var input = document.getElementById('files');
                 var file = input.files[0];
                 var email = this.newUserEmail;
+                var password = this.newUserPassword;
                 //all fields filled in
                 var exists = false;
                 for(var i = 0; i < this.users.length; i++)
@@ -190,9 +191,7 @@
                         storageRef.child('images/' + file.name)
                                 .put(file)
                                 .then(snapshot =>  this.addUserImage(email, snapshot.downloadURL));
-                        this.loginEmail = email;
-                        this.loginPassword = password;
-                        this.login();
+                        this.loginFromSignUp(email, password);
                     }
                 //not a duke email
                 else{
@@ -211,6 +210,21 @@
                                 usersRef.child(this.users[i]['.key']).update({image: url});
                             }
                     }    
+            },
+            loginFromSignUp: function(email,password)
+            {
+                console.log(email);
+                console.log(password);
+                for(var i = 0; i <this.users.length; i ++)
+                    {
+                        if(this.users[i].email == email && this.users[i].password == password)
+                            {
+                                this.checkLogin=false;
+                                this.currentUser = this.users[i].email;
+                                this.userIsAdmin = this.users[i].admin;
+                                this.userImage = this.users[i].image;
+                            }
+                    }
             },
            login: function()
             {
