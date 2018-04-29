@@ -53,7 +53,6 @@
                   :deleteDepartment="deleteDepartment"
                   :currentUser = "currentUser"
                   :userIsAdmin = "userIsAdmin"
-                  :checkFieldsHP="checkFieldsHP"
                   >
         </homePage>
         <!--DEPARTMENT PAGE-->
@@ -67,7 +66,6 @@
                         :userIsAdmin = "userIsAdmin"
                         :returnToHome = "returnToHome"
                         :deleteClass= "deleteClass"
-                        :checkFieldsDpt="checkFieldsDpt"
         >
         </departmentPage>
         <!--CLASS REVIEWS PAGE-->
@@ -91,7 +89,7 @@
                       :returnToDepartment = "returnToDepartment"
                         >
         </classReviews>
-        <h3 id = "logout">Not you? <button v-on:click = "logout">Logout</button></h3>
+        <h3 id = "logout" v-show= "currentUser != ''">Not you? <button v-on:click = "logout">Logout</button></h3>
     </div>
 </template>
 
@@ -178,6 +176,7 @@
                     }
                 if(this.newUserEmail==""||this.newUserPassword==""||file.name==""){
                     this.checkSignUp=true;
+                    alert("Please fill out all the fields to make a new user!");
                 }
                 
                 else if(this.newUserEmail.includes("@duke.edu") && !exists)
@@ -192,12 +191,17 @@
                         storageRef.child('images/' + file.name)
                                 .put(file)
                                 .then(snapshot =>  this.addUserImage(email, password, snapshot.downloadURL));
+                        alert("User creation successful! Please log in")
                     }
                 //not a duke email
+                else if(exists)
+                    {
+                        alert("This email already has an account. Please log in");
+                    }
                 else{
                     this.checkSignUp=true;
+                    alert("Something went wrong. Please try again.");
                 }
-                this.loginFromSignUp(email, password);
                 this.newUserEmail = "";
                 this.newUserPassword = "";
                 input.value = "";
@@ -233,6 +237,7 @@
                 //fields not filled in
                 if(this.loginEmail=="" || this.loginPassword==""){
                     this.checkLogin=true;
+                    alert("Please fill out all fields!")
                 }
                 
                 var found=0; 
@@ -245,11 +250,13 @@
                                 this.currentUser = this.users[i].email;
                                 this.userIsAdmin = this.users[i].admin;
                                 this.userImage = this.users[i].image;
+                                alert("Login successful!");
                             }
                     }
                 //not a valid password or email
                 if(found==0){
                     this.checkLogin=true;
+                    alert("Could not find username and/or password");
                 }
                 this.loginEmail = "";
                 this.loginPassword = "";     
@@ -259,6 +266,7 @@
                 this.currentUser = "";
                 this.userIsAdmin = false;
                 this.userImage = "";
+                alert("You have been logged out")
             },
             grantAdmin: function(userEmail)
             {
@@ -267,6 +275,7 @@
                         if(this.users[i].email == userEmail)
                             {
                                 usersRef.child(this.users[i]['.key']).update({admin: true, submittedAdminRequest: false});
+                                alert("Administrator status granted!");
                             }
                     }
             },
@@ -277,6 +286,7 @@
                         if(this.users[i].email == userEmail)
                             {
                                 usersRef.child(this.users[i]['.key']).update({submittedAdminRequest: true});
+                                alert("Your administrator request has been sent!");
                             }
                     }
             },
@@ -314,6 +324,7 @@
                 
                 if(department==""){
                     this.checkFieldsHP=true;
+                    alert("Please fill out all fields");
                 }
                 else{
                     departmentsWithClasses.push({name: department});
@@ -326,6 +337,7 @@
                // console.log("HERE");
                 if(department==""){
                     this.checkFieldsHP=true;
+                    alert("Please fill our all fields");
                 }
                 else{
                     var found=0; 
@@ -361,6 +373,7 @@
                     }
                     if(found==0){
                         this.checkFieldsHP=true;
+                        alert('No department of name ' + department + " was found to delete");
                     }
                 }    
             },
@@ -371,10 +384,12 @@
                 if(classNumber==""){
                     this.checkFieldsDpt=true; 
                     needsToBeAdded=1;
+                    alert("Please fill out all fields");
                 }
                 if(classNumber.includes(".")||classNumber.includes("#")||classNumber.includes("$") || classNumber.includes("[") ){
                     needsToBeAdded=1;
                     this.checkFieldsDpt=true;
+                    alert("Make sure your class number is only numbers!")
                 }
                 
                 //check if already a class
@@ -383,14 +398,14 @@
                         console.log("HERE");
                         needsToBeAdded=1;
                         this.checkFieldsDpt=true;
-                        
-                    
+                        alert("This class already exists!");
                     }
                 }
                 //not a number
                 if(isNaN(parseInt(classNumber))){
                     needsToBeAdded=1;
-                    this.checkFieldsDpt=true; 
+                    this.checkFieldsDpt=true;
+                    alert("Make sure your class number is only numbers!")
                 }
                 if(needsToBeAdded==0){
                     console.log("ADDEd");
@@ -422,6 +437,7 @@
                 var found=0; 
                 if(newName==""){
                     this.checkFieldsHP=true; 
+                    alert("Please fill out all fields");
                 }
                 else{
                     for(var i  = 0; i < this.departments.length; i++)
@@ -444,6 +460,7 @@
                 }
                 if(found==0){
                     this.checkFieldsHP=true; 
+                    alert("Could not find department to edit");
                 }
 
             },
@@ -461,6 +478,7 @@
                 if(found==0){
                     this.checkFieldsDpt=true;
                     canSwitch=1; 
+                    alert("Could not find class to edit")
                 }
                 //check if newNumber is already a class
                 var foundNew=0; 
@@ -473,18 +491,21 @@
                 if(foundNew==1){
                     this.checkFieldsDpt=true;
                     canSwitch=1; 
+                    alert("This class already exists!");
                 }
                 //newNumber not a number--don't have to do for the class being edited 
                 if(isNaN(parseInt(newNumber))){
                     //needsToBeAdded=1;
                     this.checkFieldsDpt=true; 
                     canSwitch=1;
+                    alert("Make sure your class number is only numbers!");
                 }
                 //empty fields
                 if(newNumber=="" || number==""){
                     this.checkFieldsDpt=true; 
                     canSwitch=1;
                     //needsToBeAdded=1;
+                    alert("Please fill out all fields!");
                 }
                 //can edit the name
                 if(canSwitch==0){
@@ -518,6 +539,7 @@
                 if(number==""){
                     this.checkFieldsDpt=true; 
                     canDelete=1;
+                    alert("Please fill out all fields!");
                 }
                 
                 //check number is actual class number
@@ -532,6 +554,7 @@
                 if(found==0){
                     this.checkFieldsDpt=true;
                     canDelete=1; 
+                    alert("Cannot find class to delete");
                 }
                 
                 if(canDelete==0){

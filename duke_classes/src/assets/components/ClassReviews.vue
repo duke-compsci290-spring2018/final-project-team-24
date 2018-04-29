@@ -53,7 +53,6 @@
                 <input type="checkbox" id="checkbox" v-model="checked">
                 <label for="checkbox">Show User Email</label>
                 <button v-on:click = "newReview(), toggleAdd()">Submit Review</button>
-                <h4 v-show="fieldsNotFilledOut">Please fill out all fields</h4>
             </div>
             <!--TO DO: ALLOW ONLY USERS OR ADMIN TO ADD A REVIEW-->
         </div>
@@ -157,6 +156,7 @@ export default {
             }
             else{
                 this.fieldsNotFilledOut=true;
+                alert("Please fill out all fields!");
             }
         },
         removeReview:function(user){

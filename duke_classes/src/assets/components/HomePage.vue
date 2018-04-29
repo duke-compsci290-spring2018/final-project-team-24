@@ -27,13 +27,12 @@
                 <label for="deleteDep" class="visuallyhidden">Delete this department</label>
             </p>
         </div>
-        <h4 v-show="checkFieldsHP">Please fill out all fields</h4>
     </div>
 </template>
 <script>
 export default {
     name: "HomePage",
-    props: ["departments", "addDepartment", "changeCurrentDepartment", "editDepartment", "currentUser", "userIsAdmin", "deleteDepartment", "checkFieldsHP"],
+    props: ["departments", "addDepartment", "changeCurrentDepartment", "editDepartment", "currentUser", "userIsAdmin", "deleteDepartment"],
     data () {
             return {
                 newDepartment: '',
