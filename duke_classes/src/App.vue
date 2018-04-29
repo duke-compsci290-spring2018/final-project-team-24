@@ -13,23 +13,25 @@
             <li>
                 <div id = "login">
                     <!--TO DO: INSERT LOGIN FIELDS AND BUTTONS-->
-                    <h3>Sign Up Here:</h3>
-                    <input id = "newEmail" v-model = "newUserEmail" placeholder="netID@duke.edu">
-                    <label for="newEmail" class="visuallyhidden">New User Email (netid@duke.edu)</label>
-                    <input id = "newPassword" v-model = "newUserPassword" placeholder="Enter Password">
-                    <label for="newPassword" class="visuallyhidden">New User Password</label>
-                    <form id = "form" @submit.prevent = "storeImage">
-                        <p><label for = "files">Choose User Image:</label>
-                        <input type="file" id="files" name="files[]" /></p>
-                    </form>
-                    <button v-on:click = "createUser">Create User</button>
-                    <h3>Already have an account? Login here:</h3>
-                    <h4 v-show="checkLogin">Please fill out all fields</h4>
-                    <input id = "existingEmail" v-model = "loginEmail" placeholder="Enter Email">
-                    <label for="existingEmail" class="visuallyhidden">Existing Email for login</label>
-                    <input id = "existingPassword" v-model = "loginPassword" placeholder="Enter Password">
-                    <label for="existingPassword" class="visuallyhidden">Existing Email for login</label>
-                    <button v-on:click = "login">Login</button>
+                    <div id = "signUp" v-show = "currentUser == ''">
+                        <h3>Sign Up Here:</h3>
+                        <input id = "newEmail" v-model = "newUserEmail" placeholder="netID@duke.edu">
+                        <label for="newEmail" class="visuallyhidden">New User Email (netid@duke.edu)</label>
+                        <input type = "password" id = "newPassword" v-model = "newUserPassword" placeholder="Enter Password">
+                        <label for="newPassword" class="visuallyhidden">New User Password</label>
+                        <form id = "form" @submit.prevent = "storeImage">
+                            <p><label for = "files">Choose User Image:</label>
+                            <input type="file" id="files" name="files[]" /></p>
+                        </form>
+                        <button v-on:click = "createUser">Create User</button>
+                        <h3>Already have an account? Login here:</h3>
+                        <h4 v-show="checkLogin">Please fill out all fields</h4>
+                        <input id = "existingEmail" v-model = "loginEmail" placeholder="Enter Email">
+                        <label for="existingEmail" class="visuallyhidden">Existing Email for login</label>
+                        <input  type = "password" id = "existingPassword" v-model = "loginPassword" placeholder="Enter Password">
+                        <label for="existingPassword" class="visuallyhidden">Existing Email for login</label>
+                        <button v-on:click = "login">Login</button>
+                    </div>
                     <h3 v-show = "userIsAdmin">Admin?</h3>
                     <button v-show = "userIsAdmin" v-on:click = "adminPage">Show Administrator Requests</button>
                 </div>
@@ -164,10 +166,19 @@
                 var file = input.files[0];
                 var email = this.newUserEmail;
                 //all fields filled in
+                var exists = false;
+                for(var i = 0; i < this.users.length; i++)
+                    {
+                        if(this.users[i].email == email)
+                            {
+                                exists = true;
+                            }
+                    }
                 if(this.newUserEmail==""||this.newUserPassword==""||file.name==""){
                     this.checkSignUp=true;
                 }
-                else if(this.newUserEmail.includes("@duke.edu"))
+                
+                else if(this.newUserEmail.includes("@duke.edu") && !exists)
                     {
                         this.checkSignUp=false;
                         usersRef.push({
@@ -179,13 +190,14 @@
                         storageRef.child('images/' + file.name)
                                 .put(file)
                                 .then(snapshot =>  this.addUserImage(email, snapshot.downloadURL));
+                        this.loginEmail = email;
+                        this.loginPassword = password;
+                        this.login();
                     }
                 //not a duke email
                 else{
                     this.checkSignUp=true;
                 }
-                
-                
                 this.newUserEmail = "";
                 this.newUserPassword = "";
                 input.value = "";
@@ -198,8 +210,7 @@
                                 console.log(url);
                                 usersRef.child(this.users[i]['.key']).update({image: url});
                             }
-                    }
-                
+                    }    
             },
            login: function()
             {
@@ -842,46 +853,49 @@
                     }
                 this.changeCurrentClass(department, classNumber);
             },
-            filterByProfessor: function(department, classNumber, professorFilter){
-                this.resetFilters(department, classNumber);
-                for(var j=0; j<this.classes.length; j++)
-                    {
-                        if(this.classes[j].class==department+classNumber)
-                        {
-                            var reviewKey = this.classes[j].reviews;
-                            
-                            for(var i = 0; i < this.reviews.length; i ++)
-                                {
-                                    if(this.reviews[i]['.key'] == reviewKey)
-                                        {
-                                           // console.log(reviewKey);
-                                           
-                                            for(var element in this.reviews[i])
-                                                {
-                                                    if(element != ".key")
-                                                   { 
-                                                    var curProfessor="";
-                                                    reviewsRef.child(reviewKey).child(element).child('professor').once('value', function(snapshot){
-                                                        curProfessor=snapshot.val();
-                                                       });
-                                                       //console.log(curDifficulty);
-                                                    if(curProfessor !=professorFilter)
-                                                   { 
-                                                       console.log("HERE");
-                                                     reviewsRef.child(reviewKey).child(element).update({show:false});
-                                                        
-                                                   }
-                                                       else{
-                                                           reviewsRef.child(reviewKey).child(element).update({show:true});
-                                                       }
-                                                   }
-                                                }
-                                        }
-                                }
-                        }
-                    }
-                this.changeCurrentClass(department, classNumber);
-            }
+              filterByProfessor: function(department, classNumber, professorFilter){
+                this.resetFilters(department, classNumber);
+                for(var j=0; j<this.classes.length; j++)
+                    {
+                        if(this.classes[j].class==department+classNumber)
+                        {
+                            var reviewKey = this.classes[j].reviews;
+                            
+                            for(var i = 0; i < this.reviews.length; i ++)
+                                {
+                                    if(this.reviews[i]['.key'] == reviewKey)
+                                        {
+                                           // console.log(reviewKey);
+                                           
+                                            for(var element in this.reviews[i])
+                                                {
+                                                    if(element != ".key")
+                                                   { 
+                                                    var curProfessor="";
+                                                    reviewsRef.child(reviewKey).child(element).child('professor').once('value', function(snapshot){
+                                                        curProfessor=snapshot.val();
+                                                       });
+                                                       //console.log(curDifficulty);
+                                                    if(curProfessor.includes(professorFilter))
+                                                   { 
+                                                       console.log("HERE");
+                                                     reviewsRef.child(reviewKey).child(element).update({show:true});
+                                                        
+                                                   }
+                                                       else if(professorFilter.includes(curProfessor)){
+                                                           reviewsRef.child(reviewKey).child(element).update({show:true});
+                                                       }
+                                                       else{
+                                                           reviewsRef.child(reviewKey).child(element).update({show:false});
+                                                       }
+                                                   }
+                                                }
+                                        }
+                                }
+                        }
+                    }
+                this.changeCurrentClass(department, classNumber);
+            }
         }
     }
 </script>

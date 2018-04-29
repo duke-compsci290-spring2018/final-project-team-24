@@ -12,6 +12,7 @@
         <div id = "addClass" v-show = "currentUser != ''">
             <input id = "addingClass" v-model="newClass" placeholder="Add a new class" @keyup.enter="addClass(currentDepartment.name, newClass), clearEdit()">
             <label for="addingClass" class="visuallyhidden">Create new class with this name</label>
+            <h4 v-show="checkFieldsDpt">Please fill out all fields</h4>
             <!--TO DO: ALLOW ONLY USERS OR ADMIN TO ADD CLASSES-->
         </div>
         <div id = "editClasses" v-show = "userIsAdmin">
@@ -23,7 +24,6 @@
             <button v-on:click = "editClasses(classToEdit, newNumber, currentDepartment.name), clearEdit()">Edit</button>
             <input id = "deleteClass" v-model="classToDelete" placeholder="Delete this class" @keyup.enter="deleteClass(classToDelete, currentDepartment.name), clearEdit()">
             <label for="deleteClass" class="visuallyhidden">Delete this class</label>
-            <h4 v-show="checkFieldsDpt">Please fill out all fields</h4>
             <!--TO DO: ALLOW ONLY ADMIN TO EDIT CLASSES-->
         </div>
         <button v-on:click = "returnToHome">Return To Home Page</button>

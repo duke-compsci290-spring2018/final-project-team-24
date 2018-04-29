@@ -72,6 +72,7 @@
                     <h4>Overall Enjoyment: {{element.enjoyment}}</h4>
                     <h4>Difficulty: {{element.difficulty}}</h4>
                     <h4>Professor: {{element.professor}}</h4>
+                    <h4>Semester: {{element.semester}}</h4>
                     <h4>Main Assignments: {{element.assignments}}</h4>
                     <h4>Overall Thoughts and Suggestions: {{element.thoughts}}</h4>
                     <h4>Date Submitted: {{element.date}}</h4>
@@ -79,7 +80,7 @@
                     <h4>Votes: {{element.votes}}</h4>
                     <button v-on:click="upVote(departmentName, classNumber, element.votes, element.user)">Up Vote</button>
                     <button v-on:click="downVote(departmentName, classNumber, element.votes, element.user)">Down Vote</button>
-                    <button v-on:click="removeReview">Delete Review</button>
+                    <button v-on:click="removeReview" v-show = "userIsAdmin">Delete Review</button>
                 </li>
             </ul>
             <!--TO DO: DISPLAY ALL REVIEWS-->
