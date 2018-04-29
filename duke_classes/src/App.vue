@@ -386,7 +386,7 @@
                     needsToBeAdded=1;
                     alert("Please fill out all fields");
                 }
-                else if(classNumber.includes(".")||classNumber.includes("#")||classNumber.includes("$") || classNumber.includes("[") || (classNumber!="" &&isNaN(parseInt(classNumber))){
+                else if(classNumber.includes(".")||classNumber.includes("#")||classNumber.includes("$") || classNumber.includes("[") || (classNumber!="" && isNaN(parseInt(classNumber)))){
                     needsToBeAdded=1;
                     this.checkFieldsDpt=true;
                     alert("Make sure your class number is only numbers!");
