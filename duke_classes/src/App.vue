@@ -190,8 +190,7 @@
                         });
                         storageRef.child('images/' + file.name)
                                 .put(file)
-                                .then(snapshot =>  this.addUserImage(email, snapshot.downloadURL));
-                        this.loginFromSignUp(email, password);
+                                .then(snapshot =>  this.addUserImage(email, password, snapshot.downloadURL));
                     }
                 //not a duke email
                 else{
@@ -201,7 +200,7 @@
                 this.newUserPassword = "";
                 input.value = "";
             },
-            addUserImage (user, url) {
+            addUserImage (user, password, url) {
                 for(var i = 0; i <this.users.length; i ++)
                     {
                         if(this.users[i].email == user)
@@ -209,7 +208,8 @@
                                 console.log(url);
                                 usersRef.child(this.users[i]['.key']).update({image: url});
                             }
-                    }    
+                    }  
+                this.loginFromSignUp(email, password);
             },
             loginFromSignUp: function(email,password)
             {
