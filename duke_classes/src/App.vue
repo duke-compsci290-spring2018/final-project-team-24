@@ -951,12 +951,12 @@
 
     ul {
         list-style-type: none;
-        padding: 0;
+        padding: 5px;
     }
 
     li {
         display: inline-block;
-        margin: 0 10px;
+        margin: 5px 10px;
     }
 
     a {
