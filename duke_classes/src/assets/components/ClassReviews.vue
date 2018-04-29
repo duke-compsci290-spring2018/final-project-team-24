@@ -12,6 +12,7 @@
             <h3>Have an opinion? Write a review!</h3>
             <div v-show = "!showAddReview">
                 <button v-on:click = "toggleAdd()">Write Review</button>
+                <button v-on:click = "toggleAdd()">Update Your Review</button>
             </div>
             <div id = "reviewCreation" v-show = "showAddReview">
                 <h4>Overall Enjoyment:</h4>
@@ -51,7 +52,7 @@
                 <div></div>
                 <input type="checkbox" id="checkbox" v-model="checked">
                 <label for="checkbox">Show User Email</label>
-                <button v-on:click = "newReview(), toggleAdd()">Add Review</button>
+                <button v-on:click = "newReview(), toggleAdd()">Submit Review</button>
                 <h4 v-show="fieldsNotFilledOut">Please fill out all fields</h4>
             </div>
             <!--TO DO: ALLOW ONLY USERS OR ADMIN TO ADD A REVIEW-->

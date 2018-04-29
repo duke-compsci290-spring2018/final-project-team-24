@@ -23,6 +23,7 @@
             <button v-on:click = "editClasses(classToEdit, newNumber, currentDepartment.name), clearEdit()">Edit</button>
             <input id = "deleteClass" v-model="classToDelete" placeholder="Delete this class" @keyup.enter="deleteClass(classToDelete, currentDepartment.name), clearEdit()">
             <label for="deleteClass" class="visuallyhidden">Delete this class</label>
+            <h4 v-show="checkFieldsDpt">Please fill out all fields</h4>
             <!--TO DO: ALLOW ONLY ADMIN TO EDIT CLASSES-->
         </div>
         <button v-on:click = "returnToHome">Return To Home Page</button>
@@ -31,7 +32,7 @@
 <script>
 export default {
     name: "DepartmentPage",
-    props: ["addClass", "currentDepartment", "addDepartment", "editClasses", "changeCurrentClass", "currentUser", "userIsAdmin", "returnToHome", "deleteClass"],
+    props: ["addClass", "currentDepartment", "addDepartment", "editClasses", "changeCurrentClass", "currentUser", "userIsAdmin", "returnToHome", "deleteClass", "checkFieldsDpt"],
     data(){
         return{
             newNumber:'',

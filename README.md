@@ -51,6 +51,13 @@ We chose to use Nodejs because we thought that components would be the best way 
 * [CSS Buttons](https://www.w3schools.com/css/css3_buttons.asp)
 * [Styling Navbar](https://www.w3schools.com/css/css_navbar.asp)
 * [Hiding Elements for Accessibility](https://www.w3.org/WAI/tutorials/forms/labels/#note-on-hiding-elements)
+* [Snapshot](https://firebase.google.com/docs/reference/js/firebase.database.DataSnapshot)
+* [Conterting Strings to Number](http://www.javascripter.net/faq/convert2.htm)
+* [Debugging](https://github.com/vuetifyjs/vuetify/issues/14)
+* [Order By Child](https://github.com/fullstackreact/react-native-firestack/issues/82)
+* [Sorting in Firebase](https://www.youtube.com/watch?v=7-YsiFe0R3A)
+* [Debugging Order by Child](https://stackoverflow.com/questions/33893866/orderbychild-not-working-in-firebase)
+* [Retrieving Firebase Data](https://firebase.google.com/docs/database/admin/retrieve-data#section-ordered-data)
 
 ### Bugs
 

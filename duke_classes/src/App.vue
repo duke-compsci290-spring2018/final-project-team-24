@@ -24,6 +24,7 @@
                     </form>
                     <button v-on:click = "createUser">Create User</button>
                     <h3>Already have an account? Login here:</h3>
+                    <h4 v-show="checkLogin">Please fill out all fields</h4>
                     <input id = "existingEmail" v-model = "loginEmail" placeholder="Enter Email">
                     <label for="existingEmail" class="visuallyhidden">Existing Email for login</label>
                     <input id = "existingPassword" v-model = "loginPassword" placeholder="Enter Password">
@@ -50,6 +51,7 @@
                   :deleteDepartment="deleteDepartment"
                   :currentUser = "currentUser"
                   :userIsAdmin = "userIsAdmin"
+                  :checkFieldsHP="checkFieldsHP"
                   >
         </homePage>
         <!--DEPARTMENT PAGE-->
@@ -63,6 +65,7 @@
                         :userIsAdmin = "userIsAdmin"
                         :returnToHome = "returnToHome"
                         :deleteClass= "deleteClass"
+                        :checkFieldsDpt="checkFieldsDpt"
         >
         </departmentPage>
         <!--CLASS REVIEWS PAGE-->
@@ -132,7 +135,11 @@
                 showAdminRequests: false,
                 showClassReviews: false,
                 showDepartmentPage: false,
-                showHomePage: true
+                showHomePage: true,
+                checkFieldsHP:false,
+                checkFieldsDpt:false,
+                checkSignUp:false,
+                checkLogin:false
             }
         },
         //connection to Firebase here
@@ -151,13 +158,18 @@
         },
         //methods
         methods:{
-            createUser: function()
+             createUser: function()
             {
                 var input = document.getElementById('files');
                 var file = input.files[0];
                 var email = this.newUserEmail;
-                if(this.newUserEmail.includes("@duke.edu"))
+                //all fields filled in
+                if(this.newUserEmail==""||this.newUserPassword==""||file.name==""){
+                    this.checkSignUp=true;
+                }
+                else if(this.newUserEmail.includes("@duke.edu"))
                     {
+                        this.checkSignUp=false;
                         usersRef.push({
                             email: this.newUserEmail,
                             password: this.newUserPassword,
@@ -168,6 +180,12 @@
                                 .put(file)
                                 .then(snapshot =>  this.addUserImage(email, snapshot.downloadURL));
                     }
+                //not a duke email
+                else{
+                    this.checkSignUp=true;
+                }
+                
+                
                 this.newUserEmail = "";
                 this.newUserPassword = "";
                 input.value = "";
@@ -183,17 +201,29 @@
                     }
                 
             },
-            login: function()
+           login: function()
             {
+                //fields not filled in
+                if(this.loginEmail=="" || this.loginPassword==""){
+                    this.checkLogin=true;
+                }
+                
+                var found=0; 
                 for(var i = 0; i <this.users.length; i ++)
                     {
                         if(this.users[i].email == this.loginEmail && this.users[i].password == this.loginPassword)
                             {
+                                found=1;
+                                this.checkLogin=false;
                                 this.currentUser = this.users[i].email;
                                 this.userIsAdmin = this.users[i].admin;
                                 this.userImage = this.users[i].image;
                             }
                     }
+                //not a valid password or email
+                if(found==0){
+                    this.checkLogin=true;
+                }
                 this.loginEmail = "";
                 this.loginPassword = "";     
             },
@@ -239,111 +269,245 @@
             },
             addDepartment: function(department)
             {
-                departmentsWithClasses.push({name: department});
+                
+                if(department==""){
+                    this.checkFieldsHP=true;
+                }
+                else{
+                    departmentsWithClasses.push({name: department});
+                    this.checkFieldsHP=false;
+                }
+                
             },
+           
             deleteDepartment: function(department){
-                for(var i=0; i<this.departments.length; i++){
-                    if(this.departments[i].name==department){
-                            var hasClasses=true;
-                            var count=0; 
-                            while(hasClasses){
-                                var hasMoreClasses=false; 
-                                for(var k=0; k< this.classes.length; k++){
-                                    
-                                    if(this.classes[k].class.includes(department)){
-                                            reviewsRef.child(this.classes[k].reviews).remove(); 
-                                        classesWithReviews.child(this.classes[k]['.key']).remove(); 
-                                        hasMoreClasses=true; 
-                                        break;
+               // console.log("HERE");
+                if(department==""){
+                    this.checkFieldsHP=true;
+                }
+                else{
+                    var found=0; 
+                    for(var i=0; i<this.departments.length; i++){
+                        if(this.departments[i].name==department){
+                            found=1; 
+                            this.checkFieldsHP=false;
+
+                                var hasClasses=true;
+                                var count=0; 
+                                while(hasClasses){
+                                    var hasMoreClasses=false; 
+                                   // console.log(this.classes.length); 
+                                    //console.log(count); 
+                                    for(var k=0; k< this.classes.length; k++){
+
+                                        if(this.classes[k].class.includes(department)){
+                                                reviewsRef.child(this.classes[k].reviews).remove(); 
+                                            classesWithReviews.child(this.classes[k]['.key']).remove(); 
+                                            hasMoreClasses=true; 
+                                            break;
+                                        }
                                     }
+                                    if(hasMoreClasses==false){
+                                        hasClasses=false;
+                                    }
+                                    count++;
                                 }
-                                if(hasMoreClasses==false){
-                                    hasClasses=false;
-                                }
-                                count++;
-                            }
-                            
-                        departmentsWithClasses.child(this.departments[i]['.key']).remove();
+
+                            departmentsWithClasses.child(this.departments[i]['.key']).remove();
+                        }
+                        
+                    }
+                    if(found==0){
+                        this.checkFieldsHP=true;
                     }
                 }    
             },
             addClass: function(department, classNumber)
             {
-                for(var i  = 0; i < this.departments.length; i++)
-                    {
-                        console.log(this.departments[i].name)
-                        if(this.departments[i].name == department)
-                            {
-                                //create a reference for future reviews
-                                var key = reviewsRef.push({show:false}).key;
-                                //creates a class under the departments ref
-                                departmentsWithClasses.child(this.departments[i]['.key']).child('classes').child(classNumber).update({number: classNumber});
-                                //creates a reference for the class in the class ref
-                                classesWithReviews.push({class: department+classNumber, reviews: key});
-                                //changes currentdepartment
-                                this.changeCurrentDepartment(this.departments[i]);
-                                
-                            }
-                    }
+                var needsToBeAdded=0; 
+                //empty field
+                if(classNumber==""){
+                    this.checkFieldsDpt=true; 
+                    needsToBeAdded=1;
+                }
                 
-                
-            },
-            editDepartment: function(department, newName)
-            {
-                for(var i  = 0; i < this.departments.length; i++)
-                    {
-                        if(this.departments[i].name == department)
-                            {
-                                departmentsWithClasses.child(this.departments[i]['.key']).update({name: newName});
-                            }
-                    }
-                for(var j = 0; j < this.classes.length; j++)
-                    {
-                        if(this.classes[j].class.includes(department))
-                            {
-                                var newClassName = newName + this.classes[j].class.substring(department.length);
-                                classesWithReviews.child(this.classes[j]['.key']).update({class: newClassName});
-                            }
-                    }
-            },
-            editClasses: function(number, newNumber, department){
-                for(var i=0; i<this.departments.length; i++){
-                    if(this.departments[i].name==department)
-                    {
-                        console.log(this.departments[i].name);
-                        departmentsWithClasses.child(this.departments[i]['.key']).child('classes').child(number).remove();
-                        departmentsWithClasses.child(this.departments[i]['.key']).child('classes').child(newNumber).update({number:newNumber});
+                //check if already a class
+                for(var i=0; i<this.classes.length; i++){
+                    if(this.classes[i].class==department+classNumber){
+                        console.log("HERE");
+                        needsToBeAdded=1;
+                        this.checkFieldsDpt=true;
                         
-                        for(var j=0; j<this.classes.length; j++)
+                    
+                    }
+                }
+                //not a number
+                if(isNaN(parseInt(classNumber))){
+                    needsToBeAdded=1;
+                    this.checkFieldsDpt=true; 
+                }
+                if(needsToBeAdded==0){
+                    console.log("ADDEd");
+                    var found=0;
+                    for(var i  = 0; i < this.departments.length; i++)
                         {
-                            if(this.classes[j].class==department+number){
-                                classesWithReviews.child(this.classes[j]['.key']).update({class: department+ newNumber});
-                                this.changeCurrentDepartment(this.departments[i]);
+                            if(this.departments[i].name == department)
+                                {
+                                    this.checkFieldsDpt=false; 
+                                    //create a reference for future reviews
+                                    var key = reviewsRef.push().key;
+                                    //creates a class under the departments ref
+                                    departmentsWithClasses.child(this.departments[i]['.key']).child('classes').child(classNumber).update({number: classNumber});
+                                    //creates a reference for the class in the class ref
+                                    classesWithReviews.push({class: department+classNumber, reviews: key});
+                                    //changes currentdepartment
+                                    this.changeCurrentDepartment(this.departments[i]);
+
+                                }
+                        }
+                }
+                
+                
+            },
+             editDepartment: function(department, newName)
+            {
+                
+                //this.checkFieldsHP=false;
+                var found=0; 
+                if(newName==""){
+                    this.checkFieldsHP=true; 
+                }
+                else{
+                    for(var i  = 0; i < this.departments.length; i++)
+                        {
+                        if(this.departments[i].name == department)
+                            {
+                                this.checkFieldsHP=false;
+                                found=1;
+                                departmentsWithClasses.child(this.departments[i]['.key']).update({name: newName});
+                                for(var j = 0; j < this.classes.length; j++)
+                                    {
+                                    if(this.classes[j].class.includes(department))
+                                        {
+                                        var newClassName = newName + this.classes[j].class.substring(department.length);
+                                        classesWithReviews.child(this.classes[j]['.key']).update({class: newClassName});
+                                        }
+                                    }
                             }
                         }
-  
-                    }
-                }    
-            },
-            deleteClass: function(number, department){
-                var departmentIndex=0;
-                for(var i=0; i<this.departments.length; i++){
-                    if(this.departments[i].name==department){
-                        departmentsWithClasses.child(this.departments[i]['.key']).child('classes').child(number).remove();
-                        departmentIndex=i;
-                    }
                 }
-                var reviewKey="";
+                if(found==0){
+                    this.checkFieldsHP=true; 
+                }
+
+            },
+            editClasses: function(number, newNumber, department){
+                var canSwitch=0; 
+                //check number is actual class number
+                var found=0;
                 for(var i=0; i<this.classes.length; i++){
                     if(this.classes[i].class==department+number){
-                        reviewKey=this.classes[i].reviews;
-                        classesWithReviews.child(this.classes[i]['.key']).remove();
+                        found=1;
+                        //console.log("HERE");                    
                     }
                 }
-                console.log(reviewKey);
-                reviewsRef.child(reviewKey).remove(); 
-                this.changeCurrentDepartment(this.departments[departmentIndex]);
+                //not a real class number
+                if(found==0){
+                    this.checkFieldsDpt=true;
+                    canSwitch=1; 
+                }
+                //check if newNumber is already a class
+                var foundNew=0; 
+                for(var j=0;j<this.classes.length; j++){
+                    if(this.classes[j].class==department+newNumber){
+                        foundNew=1;
+                    }
+                }
+                //newNumber is already a class
+                if(foundNew==1){
+                    this.checkFieldsDpt=true;
+                    canSwitch=1; 
+                }
+                //newNumber not a number--don't have to do for the class being edited 
+                if(isNaN(parseInt(newNumber))){
+                    //needsToBeAdded=1;
+                    this.checkFieldsDpt=true; 
+                    canSwitch=1;
+                }
+                //empty fields
+                if(newNumber=="" || number==""){
+                    this.checkFieldsDpt=true; 
+                    canSwitch=1;
+                    //needsToBeAdded=1;
+                }
+                //can edit the name
+                if(canSwitch==0){
+                    this.checkFieldsDpt=false; 
+                    console.log("SWITCH");
+                    
                 
+                    for(var i=0; i<this.departments.length; i++){
+                        if(this.departments[i].name==department)
+                        {
+                            console.log(this.departments[i].name);
+                            departmentsWithClasses.child(this.departments[i]['.key']).child('classes').child(number).remove();
+                            departmentsWithClasses.child(this.departments[i]['.key']).child('classes').child(newNumber).update({number:newNumber});
+
+                            for(var j=0; j<this.classes.length; j++)
+                            {
+                                if(this.classes[j].class==department+number){
+                                    classesWithReviews.child(this.classes[j]['.key']).update({class: department+ newNumber});
+                                    this.changeCurrentDepartment(this.departments[i]);
+                                }
+                            }
+
+                        }
+                    } 
+                }
+            },
+            deleteClass: function(number, department){
+                var canDelete=0;
+                
+                //empty field
+                if(number==""){
+                    this.checkFieldsDpt=true; 
+                    canDelete=1;
+                }
+                
+                //check number is actual class number
+                var found=0;
+                for(var i=0; i<this.classes.length; i++){
+                    if(this.classes[i].class==department+number){
+                        found=1;
+                        //console.log("HERE");                    
+                    }
+                }
+                //not a real class number
+                if(found==0){
+                    this.checkFieldsDpt=true;
+                    canDelete=1; 
+                }
+                
+                if(canDelete==0){
+                    this.checkFieldsDpt=false;
+                    var departmentIndex=0;
+                    for(var i=0; i<this.departments.length; i++){
+                        if(this.departments[i].name==department){
+                            departmentsWithClasses.child(this.departments[i]['.key']).child('classes').child(number).remove();
+                            departmentIndex=i;
+                        }
+                    }
+                    var reviewKey="";
+                    for(var i=0; i<this.classes.length; i++){
+                        if(this.classes[i].class==department+number){
+                            reviewKey=this.classes[i].reviews;
+                            classesWithReviews.child(this.classes[i]['.key']).remove();
+                        }
+                    }
+                    console.log(reviewKey);
+                    reviewsRef.child(reviewKey).remove(); 
+                    this.changeCurrentDepartment(this.departments[departmentIndex]);
+                }
             },
             changeCurrentDepartment(department)
             {

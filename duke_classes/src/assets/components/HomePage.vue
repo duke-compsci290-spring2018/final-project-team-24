@@ -26,19 +26,21 @@
                 <input id = "deleteDep" @keyup.enter="deleteDepartment(departmentToDelete),clearEdit()" v-model = "departmentToDelete" placeholder="Delete this Department">
                 <label for="deleteDep" class="visuallyhidden">Delete this department</label>
             </p>
+            <h4 v-show="checkFieldsHP">Please fill out all fields</h4>
         </div>
     </div>
 </template>
 <script>
 export default {
     name: "HomePage",
-    props: ["departments", "addDepartment", "changeCurrentDepartment", "editDepartment", "currentUser", "userIsAdmin", "deleteDepartment"],
+    props: ["departments", "addDepartment", "changeCurrentDepartment", "editDepartment", "currentUser", "userIsAdmin", "deleteDepartment", "checkFieldsHP"],
     data () {
             return {
                 newDepartment: '',
                 departmentToEdit: '',
                 newName: '',
-                departmentToDelete:''
+                departmentToDelete:'',
+                fieldsNotFilledOut: false
             }
     },
     methods: {
