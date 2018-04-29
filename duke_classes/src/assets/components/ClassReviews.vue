@@ -80,18 +80,19 @@
                     <h4>Votes: {{element.votes}}</h4>
                     <button v-on:click="upVote(departmentName, classNumber, element.votes, element.user)">Up Vote</button>
                     <button v-on:click="downVote(departmentName, classNumber, element.votes, element.user)">Down Vote</button>
-                    <button v-on:click="removeReview" v-show = "userIsAdmin">Delete Review</button>
+                    <button v-on:click="removeReview(element.user)" v-show = "userIsAdmin || currentUser == element.user">Delete Review</button>
                 </li>
             </ul>
             <!--TO DO: DISPLAY ALL REVIEWS-->
         </div>
+        <button v-on:click = "returnToDepartment">Return To Department Page</button>
         <button v-on:click = "returnToHome">Return To Home Page</button>
     </div>
 </template>
 <script>
 export default {
     name: "ClassReviews",
-    props: ["currentClass", "addReview", "departmentName", "classNumber", "avgEnjoyment", "avgDifficulty", "currentUser", "userIsAdmin", "returnToHome", "orderByEnjoyment", "upVote", "downVote", "resetFilters" , "filterByDifficulty", "filterByProfessor", "deleteReview"],
+    props: ["currentClass", "addReview", "departmentName", "classNumber", "avgEnjoyment", "avgDifficulty", "currentUser", "userIsAdmin", "returnToHome", "orderByEnjoyment", "upVote", "downVote", "resetFilters" , "filterByDifficulty", "filterByProfessor", "deleteReview", "returnToDepartment"],
     data(){
         return{
             enjoyment: "",
@@ -158,9 +159,9 @@ export default {
                 this.fieldsNotFilledOut=true;
             }
         },
-        removeReview:function(){
-            var crop = this.currentUser.indexOf(".");
-            var userCrop = this.currentUser.substring(0,crop);
+        removeReview:function(user){
+            var crop = user.indexOf("@");
+            var userCrop = user.substring(0,crop);
             this.deleteReview(this.departmentName, this.classNumber, userCrop);  
         },
         toggleAdd: function()

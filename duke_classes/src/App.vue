@@ -6,7 +6,7 @@
                 <div id = "welcome">
                     <!--TO DO: SHOW LOGGED IN USER-->
                     <img v-bind:src="userImage" v-show = "userImage != ''" alt = "User's Profile Picture">
-                    <h1>Welcome {{currentUser}}!</h1>
+                    <h1>Welcome {{currentUser}}</h1>
                 </div>
             </li>
             <li>
@@ -88,6 +88,7 @@
                       :filterByDifficulty="filterByDifficulty"
                       :filterByProfessor="filterByProfessor"
                       :deleteReview= "deleteReview"
+                      :returnToDepartment = "returnToDepartment"
                         >
         </classReviews>
         <h3 id = "logout">Not you? <button v-on:click = "logout">Logout</button></h3>
@@ -196,9 +197,11 @@
                 else{
                     this.checkSignUp=true;
                 }
+                this.loginFromSignUp(email, password);
                 this.newUserEmail = "";
                 this.newUserPassword = "";
                 input.value = "";
+               
             },
             addUserImage (user, password, url) {
                 for(var i = 0; i <this.users.length; i ++)
@@ -208,8 +211,7 @@
                                 console.log(url);
                                 usersRef.child(this.users[i]['.key']).update({image: url});
                             }
-                    }  
-                this.loginFromSignUp(email, password);
+                    } 
             },
             loginFromSignUp: function(email,password)
             {
@@ -217,7 +219,7 @@
                 console.log(password);
                 for(var i = 0; i <this.users.length; i ++)
                     {
-                        if(this.users[i].email == email && this.users[i].password == password)
+                        if(this.users[i].email == email && this.u3sers[i].password == password)
                             {
                                 this.checkLogin=false;
                                 this.currentUser = this.users[i].email;
@@ -294,6 +296,16 @@
                 this.currentDepartment = [],
                 this.currentClass = [],
                 this.currentDepartmentName = "";
+                this.currentClassNumber = "";
+                this.reviewKey = "";
+            },
+            returnToDepartment: function()
+            {
+                this.showAdminRequests = false;
+                this.showClassReviews = false;
+                this.showDepartmentPage = true;
+                this.showHomePage = false;  
+                this.currentClass = [],
                 this.currentClassNumber = "";
                 this.reviewKey = "";
             },
