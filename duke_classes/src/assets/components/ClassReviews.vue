@@ -59,11 +59,11 @@
         <div id = "reviews" >
             <h2>Reviews</h2>
             <h3>Filter Reviews:</h3>
-            <input id = "filterEnj" @keyup.enter="orderByEnjoyment(departmentName, classNumber, enjoymentFilter), clearEdit()" v-model = "enjoymentFilter" placeholder="Show this enjoyment">
+            <input id = "filterEnj" @keyup.enter="orderByEnjoyment(departmentName, classNumber, enjoymentFilter), clearEdit()" v-model = "enjoymentFilter" placeholder="Show Enjoyment Rating">
             <label for="filterEnj" class="visuallyhidden">Filter by this enjoyment number</label>
-            <input id = "filterDif" @keyup.enter="filterByDifficulty(departmentName, classNumber, difficultyFilter), clearEdit()" v-model = "difficultyFilter" placeholder="Show this difficulty">
+            <input id = "filterDif" @keyup.enter="filterByDifficulty(departmentName, classNumber, difficultyFilter), clearEdit()" v-model = "difficultyFilter" placeholder="Show Difficulty Rating">
             <label for="filterDif" class="visuallyhidden">Filter by this difficulty number</label>
-            <input id = "filterProf" @keyup.enter="filterByProfessor(departmentName, classNumber, professorFilter), clearEdit()" v-model = "professorFilter" placeholder="Show this professor">
+            <input id = "filterProf" @keyup.enter="filterByProfessor(departmentName, classNumber, professorFilter), clearEdit()" v-model = "professorFilter" placeholder="Show Professor">
             <label for="filterProf" class="visuallyhidden">Filter by this professor</label>
             <button v-on:click="resetFilters(departmentName, classNumber)">Reset Filters</button>
             <ul v-for = "element in currentClass">
