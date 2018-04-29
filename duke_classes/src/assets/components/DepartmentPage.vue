@@ -10,8 +10,8 @@
             </ul>  
         </div>
         <div id = "addClass" v-show = "currentUser != ''">
-            <input id = "addingClass" v-model="newClass" placeholder="Add a new class" @keyup.enter="addClass(currentDepartment.name, newClass), clearEdit()">
-            <label for="addingClass" class="visuallyhidden">Create new class with this name</label>
+            <input id = "addingClass" v-model="newClass" placeholder="Add a new class number" @keyup.enter="addClass(currentDepartment.name, newClass), clearEdit()">
+            <label for="addingClass" class="visuallyhidden">Create new class with this number</label>
             <h4 v-show="checkFieldsDpt">Please fill out all fields</h4>
             <!--TO DO: ALLOW ONLY USERS OR ADMIN TO ADD CLASSES-->
         </div>
