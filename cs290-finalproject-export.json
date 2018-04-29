@@ -1,0 +1,934 @@
+{
+  "classes" : {
+    "-LBDiMPiaMZcisBkNF8Y" : {
+      "class" : "Math212",
+      "reviews" : "-LBDiMPelV6VE5kihVBt"
+    },
+    "-LBDiNimkWUstU_W4wT5" : {
+      "class" : "Math221",
+      "reviews" : "-LBDiNillMVzw1qJOKcd"
+    },
+    "-LBDiRB2rX82Wc9anUll" : {
+      "class" : "Math230",
+      "reviews" : "-LBDiRB0brUcefgFnhmu"
+    },
+    "-LBDiRwdj6CnXwik3s1t" : {
+      "class" : "Math356",
+      "reviews" : "-LBDiRwaeMAiHU6p7d_u"
+    },
+    "-LBDiUIVtiNB1DeaRZzr" : {
+      "class" : "Computer Science101",
+      "reviews" : "-LBDiUITCHBMiU--vR3Z"
+    },
+    "-LBDiUzD3FcN7_lJPZK4" : {
+      "class" : "Computer Science201",
+      "reviews" : "-LBDiUzCYDE2GeOzI2K8"
+    },
+    "-LBDiVEtf2AhCxp_xtzn" : {
+      "class" : "Computer Science250",
+      "reviews" : "-LBDiVEsbYCHcjhl37Ko"
+    },
+    "-LBDirivWtDGjwYyFrCV" : {
+      "class" : "Computer Science290",
+      "reviews" : "-LBDiriuP7xVdBwj_6I9"
+    },
+    "-LBDk-L-au64Fvfj2QcX" : {
+      "class" : "Ethics215",
+      "reviews" : "-LBDk-Kzt4uhyYAMvRDu"
+    },
+    "-LBDke_N6fzEcve2ksnx" : {
+      "class" : "Gender Studies221",
+      "reviews" : "-LBDke_KYdHEdRojeZzv"
+    },
+    "-LBDkjn9BjudHxkB1IVx" : {
+      "class" : "Psychology101",
+      "reviews" : "-LBDkjn7V8I7lcPxKWZi"
+    },
+    "-LBDnViTk0J-sB1c9rQ8" : {
+      "class" : "Computer Science308",
+      "reviews" : "-LBDnViR5X3rD5v8DlOW"
+    },
+    "-LBDoD84OW9R6r0mkWeg" : {
+      "class" : "Spanish306",
+      "reviews" : "-LBDoD837oJt3X9akvRa"
+    },
+    "-LBDodCGzzMjJlInllQw" : {
+      "class" : "Writing101",
+      "reviews" : "-LBDodCE0Au1wwDy-ZJK"
+    },
+    "-LBDq9xl67ksLu2hbyIJ" : {
+      "class" : "Statistics230",
+      "reviews" : "-LBDq9xgYXdYnJbkVlcS"
+    },
+    "-LBDrTUyjGrsLensfw08" : {
+      "class" : "Italian101",
+      "reviews" : "-LBDrTUwfjQuMqmD2dBS"
+    },
+    "-LBDrUnNjV6yR7Mub5dA" : {
+      "class" : "Italian102",
+      "reviews" : "-LBDrUnMfzNQur_NyJIt"
+    },
+    "-LBDvG0e5PlxGzA09m9B" : {
+      "class" : "Classical Studies262",
+      "reviews" : "-LBDvG0_BcvV_VR-3I_1"
+    },
+    "-LBDwB-3HUGwfHZLj8oi" : {
+      "class" : "Math112",
+      "reviews" : "-LBDwB-1bFjCBPOYdpwZ"
+    },
+    "-LBDzlAXXI439aLckwjQ" : {
+      "class" : "English222S",
+      "reviews" : "-LBDzlAVWzj7NZtFb_kE"
+    },
+    "-LBE0_yHfNRuVGW5xfGn" : {
+      "class" : "German101",
+      "reviews" : "-LBE0_yDZMOsYZ1fc8tU"
+    },
+    "-LBE1bxiemAwzcKzLs3V" : {
+      "class" : "German102",
+      "reviews" : "-LBE1bxfh9npjOGN3g4d"
+    },
+    "-LBE1u-k5QFtLDAq6Ozo" : {
+      "class" : "German203",
+      "reviews" : "-LBE1u-hLxQe2QVQabNx"
+    },
+    "-LBE2_Gz1_IUrp_ajnor" : {
+      "class" : "Classical Studies275",
+      "reviews" : "-LBE2_GydMB-fVUftMs5"
+    },
+    "-LBE2bfcMKMf-Jk1025b" : {
+      "class" : "German204",
+      "reviews" : "-LBE2bfcMKMf-Jk1025a"
+    },
+    "-LBE4EaW1S1DtdkeE2HV" : {
+      "class" : "Computer Science230",
+      "reviews" : "-LBE4EaV466nKY-YN6sY"
+    },
+    "-LBE5Ymlt4GwPhe3t8ak" : {
+      "class" : "Math222",
+      "reviews" : "-LBE5YmiDSdyT3JQSdgD"
+    },
+    "-LBE5oOjpwMwZDCwaVyI" : {
+      "class" : "Psychology102",
+      "reviews" : "-LBE5oOf7gXDqhMHRi9J"
+    },
+    "-LBE5oyVq1wqMoVBU-FZ" : {
+      "class" : "Economics201",
+      "reviews" : "-LBE5oyUB07Avz2RkCf1"
+    },
+    "-LBE6JT3zOB-7m5rHa6p" : {
+      "class" : "Political Science207",
+      "reviews" : "-LBE6JT3zOB-7m5rHa6o"
+    },
+    "-LBE6RgSIRZMCGyZiqjy" : {
+      "class" : "Hebrew102",
+      "reviews" : "-LBE6RgRgWYMrX7TrGyM"
+    },
+    "-LBE7FCMNHTsus3uu69g" : {
+      "class" : "Math412",
+      "reviews" : "-LBE7FCJCI2sDrmh2O6o"
+    }
+  },
+  "departments" : {
+    "-LBDi1aRhfdcOrFFdZY5" : {
+      "classes" : {
+        "112" : {
+          "number" : "112"
+        },
+        "212" : {
+          "number" : "212"
+        },
+        "221" : {
+          "number" : "221"
+        },
+        "222" : {
+          "number" : "222"
+        },
+        "230" : {
+          "number" : "230"
+        },
+        "356" : {
+          "number" : "356"
+        },
+        "412" : {
+          "number" : "412"
+        }
+      },
+      "name" : "Math"
+    },
+    "-LBDiQGnXAvgQKr-3quu" : {
+      "classes" : {
+        "101" : {
+          "number" : "101"
+        },
+        "201" : {
+          "number" : "201"
+        },
+        "230" : {
+          "number" : "230"
+        },
+        "250" : {
+          "number" : "250"
+        },
+        "290" : {
+          "number" : "290"
+        },
+        "308" : {
+          "number" : "308"
+        }
+      },
+      "name" : "Computer Science"
+    },
+    "-LBDjul1vkKmelMcWK8t" : {
+      "classes" : {
+        "222S" : {
+          "number" : "222S"
+        }
+      },
+      "name" : "English"
+    },
+    "-LBDjyfH818hcJsx6CuV" : {
+      "classes" : {
+        "215" : {
+          "number" : "215"
+        }
+      },
+      "name" : "Ethics"
+    },
+    "-LBDk3XCYE9Ijf9N-hCg" : {
+      "classes" : {
+        "221" : {
+          "number" : "221"
+        }
+      },
+      "name" : "Gender Studies"
+    },
+    "-LBDkVrly2UxRMEbDILP" : {
+      "classes" : {
+        "101" : {
+          "number" : "101"
+        },
+        "102" : {
+          "number" : "102"
+        }
+      },
+      "name" : "Italian"
+    },
+    "-LBDkiYBZMkkWk8hvK5Y" : {
+      "classes" : {
+        "101" : {
+          "number" : "101"
+        },
+        "102" : {
+          "number" : "102"
+        }
+      },
+      "name" : "Psychology"
+    },
+    "-LBDoC6duqzGHCvWYmRU" : {
+      "classes" : {
+        "306" : {
+          "number" : "306"
+        }
+      },
+      "name" : "Spanish"
+    },
+    "-LBDoc7xcSIoikvCCPMg" : {
+      "classes" : {
+        "101" : {
+          "number" : "101"
+        }
+      },
+      "name" : "Writing"
+    },
+    "-LBDoezXkj-wR2VsM-Ki" : {
+      "classes" : {
+        "262" : {
+          "number" : "262"
+        },
+        "275" : {
+          "number" : "275"
+        }
+      },
+      "name" : "Classical Studies"
+    },
+    "-LBDpuIU7triKLfwmuJL" : {
+      "classes" : {
+        "230" : {
+          "number" : "230"
+        }
+      },
+      "name" : "Statistics"
+    },
+    "-LBE0KP6AnUaWwZ4f4Mt" : {
+      "classes" : {
+        "101" : {
+          "number" : "101"
+        },
+        "102" : {
+          "number" : "102"
+        },
+        "203" : {
+          "number" : "203"
+        },
+        "204" : {
+          "number" : "204"
+        }
+      },
+      "name" : "German"
+    },
+    "-LBE5gCLRMqO3fzDUnFq" : {
+      "name" : "Philosophy"
+    },
+    "-LBE5k3wOvYJg-tF5E5J" : {
+      "classes" : {
+        "201" : {
+          "number" : "201"
+        }
+      },
+      "name" : "Economics"
+    },
+    "-LBE6IA8xaqIEBviaV1W" : {
+      "classes" : {
+        "207" : {
+          "number" : "207"
+        }
+      },
+      "name" : "Political Science"
+    },
+    "-LBE6P8Jx2JT4HAIA_gL" : {
+      "classes" : {
+        "102" : {
+          "number" : "102"
+        }
+      },
+      "name" : "Hebrew"
+    }
+  },
+  "reviews" : {
+    "-LBDiMPelV6VE5kihVBt" : {
+      "bn51" : {
+        "assignments" : "We had problem sets due every week. We also had three midterms and a final.",
+        "date" : "4/28/2018, 8:10:14 PM",
+        "difficulty" : "5",
+        "enjoyment" : "2",
+        "professor" : "Lei Li",
+        "semester" : "Fall 2016",
+        "show" : true,
+        "thoughts" : "Very confusing class. The professor was hard to understand and asked questions on midterms and finals that were very different from homework problems. My suggestion would be to try your best in the class and not worry too much because the final created by all the professors was much easier than the midterms.",
+        "user" : "bn51@duke.edu",
+        "userShow" : "bn51@duke.edu",
+        "votes" : 0
+      }
+    },
+    "-LBDiNillMVzw1qJOKcd" : {
+      "bn51" : {
+        "assignments" : "There were weekly problem sets and then two midterms and a final.",
+        "date" : "4/28/2018, 8:17:01 PM",
+        "difficulty" : "4",
+        "enjoyment" : "4",
+        "professor" : "Heekyoung Hahn",
+        "semester" : "Spring 2017",
+        "show" : true,
+        "thoughts" : "Great class. Professor Hahn really wants you to succeed and helps you out whenever you reach out to her. Definitely challenging but overall a rewarding class.",
+        "user" : "bn51@duke.edu",
+        "userShow" : "bn51@duke.edu",
+        "votes" : 0
+      },
+      "jbl34" : {
+        "assignments" : "Problem sets, midterm",
+        "date" : "4/28/2018, 9:52:37 PM",
+        "difficulty" : "3",
+        "enjoyment" : "4",
+        "professor" : "Ezra Miller",
+        "semester" : "Fall 2016",
+        "show" : true,
+        "thoughts" : "Difficult class. Definitely a rude awakening from high school math. Ezra is a good professor and will definitely help you out if you show that you're putting in the work.",
+        "user" : "jbl34@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBDiRB0brUcefgFnhmu" : {
+      "bn51" : {
+        "assignments" : "There were weekly problem sets along with two midterms and a final.",
+        "date" : "4/28/2018, 8:18:08 PM",
+        "difficulty" : "5",
+        "enjoyment" : "0",
+        "professor" : "Yulong Lu",
+        "semester" : "Fall 2017",
+        "show" : true,
+        "thoughts" : "Awful class. Really difficult and hard to follow. The professor was also hard to reach and not very helpful during office hours.",
+        "user" : "bn51@duke.edu",
+        "userShow" : "bn51@duke.edu",
+        "votes" : 0
+      }
+    },
+    "-LBDiRwaeMAiHU6p7d_u" : {
+      "bn51" : {
+        "assignments" : "There were weekly problem sets along with two midterms and a final. The problem sets take a really long time but are really helpful when studying for the test.",
+        "date" : "4/28/2018, 8:19:38 PM",
+        "difficulty" : "5",
+        "enjoyment" : "4",
+        "professor" : "Mark Stern",
+        "semester" : "Fall 2017",
+        "show" : true,
+        "thoughts" : "I learned so much in this class, but it was really difficult. I struggled a lot and spent a lot of time in office hours. The professor was really smart but sometimes difficult to ask questions to. He could be intimidating.",
+        "user" : "bn51@duke.edu",
+        "userShow" : "bn51@duke.edu",
+        "votes" : 0
+      },
+      "jbl34" : {
+        "assignments" : "Problem sets, midterm, final",
+        "date" : "4/28/2018, 9:59:52 PM",
+        "difficulty" : "4",
+        "enjoyment" : "3",
+        "professor" : "Jianfeng Lu",
+        "semester" : "Fall 2017",
+        "show" : true,
+        "thoughts" : "Decent class. Homework was straightforward but exams were much different. Nothing groundbreakingly interesting.",
+        "user" : "jbl34@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBDiUITCHBMiU--vR3Z" : {
+      "bn51" : {
+        "assignments" : "Some of the major assignments included two Hangman programs, Recommender, and Turtles. There were also APTs (small coding problems) due every week. A lot of assignments to do.",
+        "date" : "4/28/2018, 8:23:15 PM",
+        "difficulty" : "2",
+        "enjoyment" : "5",
+        "professor" : "Susan Rodger",
+        "semester" : "Fall 2017",
+        "show" : false,
+        "thoughts" : "There was a lot of work in the class but I feel like it was all doable if you started early. I really enjoyed everything I learned and this class made me want to become a computer science major!",
+        "user" : "bn51@duke.edu",
+        "userShow" : "bn51@duke.edu",
+        "votes" : 0
+      },
+      "mjh80" : {
+        "assignments" : "Totem Poles, turtle, transform, hangman, clever",
+        "date" : "4/28/2018, 8:23:00 PM",
+        "difficulty" : 1,
+        "enjoyment" : "5",
+        "professor" : "Rodger",
+        "semester" : "Fall 2016",
+        "show" : false,
+        "thoughts" : "Great class! Gives you a great foundation for future computer science courses",
+        "user" : "mjh80@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBDiUzCYDE2GeOzI2K8" : {
+      "bn51" : {
+        "assignments" : "Huffman, Autocomplete, Markov. There were also APTs and 2 APT quizes.",
+        "date" : "4/28/2018, 8:25:33 PM",
+        "difficulty" : "5",
+        "enjoyment" : "3",
+        "professor" : "Forbes",
+        "semester" : "Spring 2017",
+        "show" : true,
+        "thoughts" : "This was a pretty challenging class. A lot of really important topics and it could be hard to keep up. I found the tests to be super hard. Definitely would recommend going to UTA office hours.",
+        "user" : "bn51@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBDiVEsbYCHcjhl37Ko" : {
+      "bn51" : {
+        "assignments" : "Cachesim, CPU, MIPS, C coding",
+        "date" : "4/28/2018, 8:27:35 PM",
+        "difficulty" : "4",
+        "enjoyment" : "5",
+        "professor" : "Tyler Bletsch",
+        "semester" : "Fall 2017",
+        "show" : true,
+        "thoughts" : "Loved this class! It was super interesting and although the projects took a long time and were really hard, they were really rewarding. I felt like I learned a lot and was also really proud of my work.",
+        "user" : "bn51@duke.edu",
+        "userShow" : "bn51@duke.edu",
+        "votes" : 0
+      },
+      "mjh80" : {
+        "assignments" : "Cachesim, CPU, MIPS, C coding",
+        "date" : "4/28/2018, 9:38:34 PM",
+        "difficulty" : "4",
+        "enjoyment" : "4",
+        "professor" : "Bletsch",
+        "semester" : "Fall 2017",
+        "show" : true,
+        "thoughts" : "Start early!! It's one of those classes that you'll feel good about after it's over, but it's not great while you're taking it. The tests are really easy.",
+        "user" : "mjh80@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBDiriuP7xVdBwj_6I9" : {
+      "bn51" : {
+        "assignments" : "Trello, Game, Gallery, Explore, Introductions",
+        "date" : "4/28/2018, 8:29:18 PM",
+        "difficulty" : "3",
+        "enjoyment" : "5",
+        "professor" : "Duvall",
+        "semester" : "Spring 2018",
+        "show" : true,
+        "thoughts" : "Great class! Learned a lot of cool web development skills and frameworks. Also was great for a beginner as I had never done any web development before.",
+        "user" : "bn51@duke.edu",
+        "userShow" : "bn51@duke.edu",
+        "votes" : 0
+      },
+      "mjh80" : {
+        "assignments" : "Gallery, Trello, Explore, Final Project",
+        "date" : "4/28/2018, 8:19:16 PM",
+        "difficulty" : "3",
+        "enjoyment" : "5",
+        "professor" : "Duvall",
+        "semester" : "Spring 2018",
+        "show" : true,
+        "thoughts" : "Best class at Duke!! You have to take this class before you graduate!!",
+        "user" : "mjh80@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 290
+      }
+    },
+    "-LBDke_KYdHEdRojeZzv" : {
+      "mjh80" : {
+        "assignments" : "Interview project, survey design project, final essay, random quizzes",
+        "date" : "4/28/2018, 9:22:32 PM",
+        "difficulty" : "2",
+        "enjoyment" : "4",
+        "professor" : "Reeves",
+        "semester" : "Spring 2018",
+        "show" : true,
+        "thoughts" : "Make sure you get a good partner for you projects!! The class was interesting, but grading was slightly arbitrary. The quizzes were difficult, but manageable if you keep up with the readings. ",
+        "user" : "mjh80@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 19
+      }
+    },
+    "-LBDkjn7V8I7lcPxKWZi" : {
+      "bn51" : {
+        "assignments" : "3 midterms, research participation, small research projects for discussion section",
+        "date" : "4/28/2018, 9:10:52 PM",
+        "difficulty" : "3",
+        "enjoyment" : "3",
+        "professor" : "Angie Vieth",
+        "semester" : "Spring 2018",
+        "show" : true,
+        "thoughts" : "I didn't find this class as interesting as I would have hoped. ",
+        "user" : "bn51@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      },
+      "mjh80" : {
+        "assignments" : "Research and Writing Project, 5 hours for research participation, 3 exams ",
+        "date" : "4/28/2018, 8:44:05 PM",
+        "difficulty" : "2",
+        "enjoyment" : "4",
+        "professor" : "Hard",
+        "semester" : "Spring 2018",
+        "show" : true,
+        "thoughts" : "Good class, can be kind of tedious, but overall pretty easy",
+        "user" : "mjh80@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBDnViR5X3rD5v8DlOW" : {
+      "bn51" : {
+        "assignments" : "Game, CellSociety, SLogo, VoogaSalad",
+        "date" : "4/28/2018, 8:32:21 PM",
+        "difficulty" : "5",
+        "enjoyment" : "4",
+        "professor" : "Duvall",
+        "semester" : "Spring 2018",
+        "show" : true,
+        "thoughts" : "This class takes up a lot of time and will cause you a fair amount of stress but it is ultimately worth it. Duvall has a plan that you don't even realize and you learn so so much. It has taught me a lot about working in teams and I feel more prepared for my summer internship.",
+        "user" : "bn51@duke.edu",
+        "userShow" : "bn51@duke.edu",
+        "votes" : 8
+      }
+    },
+    "-LBDoD837oJt3X9akvRa" : {
+      "bn51" : {
+        "assignments" : "Proyecto de Pais, Talk Abroad conversations, Reflexion Final",
+        "date" : "4/29/2018, 9:33:48 AM",
+        "difficulty" : "2",
+        "enjoyment" : "5",
+        "professor" : "Bethzaida Fernandez",
+        "semester" : "Spring 2018",
+        "show" : true,
+        "thoughts" : "Really great class! It was nice to learn about something other than grammar and vocabulary. I have never taken a global health class and this was a good one to start with. ",
+        "user" : "bn51@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBDodCE0Au1wwDy-ZJK" : {
+      "bn51" : {
+        "assignments" : "Legal Case Reviews, Small essays about novels. This was the Law and Literature topic of writing 101",
+        "date" : "4/28/2018, 8:39:12 PM",
+        "difficulty" : "1",
+        "enjoyment" : "5",
+        "professor" : "Emma Graner",
+        "semester" : "Fall 2016",
+        "show" : true,
+        "thoughts" : "Emma was such a nice professor and she gave us such cool cases to review. I thought I wouldn't enjoy the topic but I loved it.",
+        "user" : "bn51@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 21
+      },
+      "mjh80" : {
+        "assignments" : "Several short writing pieces, a couple of readings, final is an ethnographic writing ",
+        "date" : "4/28/2018, 9:34:55 PM",
+        "difficulty" : "1",
+        "enjoyment" : "5",
+        "professor" : "Regallo",
+        "semester" : "Spring 2017",
+        "show" : true,
+        "thoughts" : "Really easy class and also a lot of fun. I didn't really learn a lot, but I enjoyed the class",
+        "user" : "mjh80@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBDq9xgYXdYnJbkVlcS" : {
+      "cmm134" : {
+        "assignments" : "Homework and midterms",
+        "date" : "4/28/2018, 8:41:56 PM",
+        "difficulty" : "4",
+        "enjoyment" : "2",
+        "professor" : "Si Tang",
+        "semester" : "Spring 2017",
+        "show" : false,
+        "thoughts" : "gross dont take this class",
+        "user" : "cmm134@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 11
+      },
+      "sc494" : {
+        "assignments" : "Problem Sets, Exams",
+        "date" : "4/28/2018, 9:52:25 PM",
+        "difficulty" : "5",
+        "enjoyment" : "5",
+        "professor" : "Si Tang",
+        "semester" : "Fall 2017",
+        "show" : true,
+        "thoughts" : "Content is very useful, Si is a great professor; the material is fundamentally difficult so beware, you'll definitely need to put in a ton of hours",
+        "user" : "sc494@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 1
+      }
+    },
+    "-LBDrTUwfjQuMqmD2dBS" : {
+      "mjh80" : {
+        "assignments" : "Culture project, homeworks, speaking assignments",
+        "date" : "4/28/2018, 8:54:34 PM",
+        "difficulty" : "1",
+        "enjoyment" : "5",
+        "professor" : "Filippo Screpanti",
+        "semester" : "Fall 2016",
+        "show" : true,
+        "thoughts" : "Great class! Easy language credit and also a lot of fun. Filippo is awesome; try to take the class with him",
+        "user" : "mjh80@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBDrUnMfzNQur_NyJIt" : {
+      "mjh80" : {
+        "assignments" : "Cultural project, weekly speaking assignments, daily homework, several tests",
+        "date" : "4/28/2018, 9:07:00 PM",
+        "difficulty" : "3",
+        "enjoyment" : "3",
+        "professor" : "Laura Casa",
+        "semester" : "Spring 2017",
+        "show" : true,
+        "thoughts" : "This class should have been really easy, but the professor made it extremely difficult. The assignments were unnecessarily difficult, and we were often tested on material that was never fully covered in class. Try and take this class with a different professor. ",
+        "user" : "mjh80@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBDvG0_BcvV_VR-3I_1" : {
+      "bn51" : {
+        "assignments" : "Wikipedia articles, small reflection activities, midterm and final",
+        "date" : "4/28/2018, 9:07:46 PM",
+        "difficulty" : "2",
+        "enjoyment" : "5",
+        "professor" : "Kyle Jazwa",
+        "semester" : "Spring 2018",
+        "show" : true,
+        "thoughts" : "Really great class. Pretty low stress and a really interesting topic. The professor is so nice. If you study for tests and write decent reflections the class should be fine.",
+        "user" : "bn51@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBDwB-1bFjCBPOYdpwZ" : {
+      "mjh80" : {
+        "assignments" : "Weekly labs, homework isn't graded, several tests",
+        "date" : "4/28/2018, 9:15:39 PM",
+        "difficulty" : "4",
+        "enjoyment" : "2",
+        "professor" : "Jeffery LaComb",
+        "semester" : "Fall 2017",
+        "show" : true,
+        "thoughts" : "I used to enjoy math, but not really anymore. LaComb was very nice and tried to help his students, but the class was unnecessarily difficult. Only take if you have to. ",
+        "user" : "mjh80@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBDzlAVWzj7NZtFb_kE" : {
+      "mjh80" : {
+        "assignments" : "Three essays",
+        "date" : "4/28/2018, 9:27:57 PM",
+        "difficulty" : "2",
+        "enjoyment" : "5",
+        "professor" : "Moses",
+        "semester" : "Fall 2017",
+        "show" : true,
+        "thoughts" : "Pretty easy class, but make sure to talk to the TAs before you turn in your essays. You don't have to do the readings or really participate at all, but attendance is mandatory. Overall, good class with interesting discussion. ",
+        "user" : "mjh80@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBE0_yDZMOsYZ1fc8tU" : {
+      "jbl34" : {
+        "assignments" : "Daily homework, four tests",
+        "date" : "4/28/2018, 9:35:11 PM",
+        "difficulty" : "2",
+        "enjoyment" : "4",
+        "professor" : "Susanne Freytag",
+        "semester" : "Fall 16",
+        "show" : true,
+        "thoughts" : "Good class! Susanne is a great teacher and the class was fairly easy. The work is not terrible, but pretty constant, so stay on top of it.",
+        "user" : "jbl34@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBE1bxfh9npjOGN3g4d" : {
+      "jbl34" : {
+        "assignments" : "Daily homeworks, several tests",
+        "date" : "4/28/2018, 9:36:38 PM",
+        "difficulty" : "1",
+        "enjoyment" : "3",
+        "professor" : "Ian Maclean",
+        "semester" : "Spring 17",
+        "show" : true,
+        "thoughts" : "Easy class with Maclean, just turn in homework every day and put in visible effort and you'll probably get an A.",
+        "user" : "jbl34@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBE1u-hLxQe2QVQabNx" : {
+      "jbl34" : {
+        "assignments" : "Keeping a personal vocabulary book, preparing for debates, writing papers",
+        "date" : "4/28/2018, 9:39:50 PM",
+        "difficulty" : "4",
+        "enjoyment" : "4",
+        "professor" : "Lina-Sophie Raith",
+        "semester" : "Summer 17",
+        "show" : true,
+        "thoughts" : "I took this class during a Duke in Berlin summer session, and totally recommend it! The class was a lot of fun and an easy A!",
+        "user" : "jbl34@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBE2_GydMB-fVUftMs5" : {
+      "mjh80" : {
+        "assignments" : "Two essays and one debate",
+        "date" : "4/28/2018, 9:43:09 PM",
+        "difficulty" : "0",
+        "enjoyment" : "5",
+        "professor" : "Atkins",
+        "semester" : "Spring 2017",
+        "show" : true,
+        "thoughts" : "Extremely easy class. Take notes during lecture, and you won't have to do any of the readings until you write your essays.",
+        "user" : "mjh80@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBE2bfcMKMf-Jk1025a" : {
+      "jbl34" : {
+        "assignments" : "Personal vocabulary lists, papers, tests",
+        "date" : "4/28/2018, 9:46:11 PM",
+        "difficulty" : "3",
+        "enjoyment" : "4",
+        "professor" : "Susanne Freytag",
+        "semester" : "Fall 2017",
+        "show" : true,
+        "thoughts" : "Fun class! Susanne is great. Requires consistent effort, but not too much work.",
+        "user" : "jbl34@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBE4EaV466nKY-YN6sY" : {
+      "mjh80" : {
+        "assignments" : "Six problem sets and three exams",
+        "date" : "4/28/2018, 9:50:03 PM",
+        "difficulty" : "4",
+        "enjoyment" : "0",
+        "professor" : "Kamesh",
+        "semester" : "Spring 2018",
+        "show" : true,
+        "thoughts" : "This was an extremely unorganized class. There was no communication between the professor, graduate TAs, and undergraduate TAs. Problems sets are fine if you do them with a TA and check with other students. The tests are reasonable, but the lectures are unhelpful, so you end up learning everything from the textbook. ",
+        "user" : "mjh80@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      },
+      "rms56" : {
+        "assignments" : "5 HWs. the daily piazza quizzes.",
+        "date" : "4/28/2018, 10:25:21 PM",
+        "difficulty" : "5",
+        "enjoyment" : "0",
+        "professor" : "Kamesh",
+        "semester" : "Spring 2018",
+        "show" : true,
+        "thoughts" : "what a mess.",
+        "user" : "rms56@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBE5YmiDSdyT3JQSdgD" : {
+      "jbl34" : {
+        "assignments" : "Problem sets, midterm, final",
+        "date" : "4/28/2018, 9:55:21 PM",
+        "difficulty" : "3",
+        "enjoyment" : "2",
+        "professor" : "Arya Roy",
+        "semester" : "Spring 2017",
+        "show" : true,
+        "thoughts" : "Roy is a good teacher, but the class is difficult and problem sets are not graded or returned at all. There was only one midterm at the beginning of the semester, so I felt unsure of my performance until the final, which was the majority of the grade. Take 212. ",
+        "user" : "jbl34@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBE5oOf7gXDqhMHRi9J" : {
+      "an150" : {
+        "assignments" : "2 midterms\n1 project demo ",
+        "date" : "4/28/2018, 9:54:54 PM",
+        "difficulty" : "3",
+        "enjoyment" : "4",
+        "professor" : "Dr. Ruth Day ",
+        "semester" : "Fall 2016",
+        "show" : true,
+        "thoughts" : "An interesting class with a manageable workload ",
+        "user" : "an150@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBE6RgRgWYMrX7TrGyM" : {
+      "an150" : {
+        "assignments" : "Midterm and take-home final\nsporadic homework assignments ",
+        "date" : "4/28/2018, 9:58:12 PM",
+        "difficulty" : "2",
+        "enjoyment" : "4",
+        "professor" : "Shelli Plesser",
+        "semester" : "Spring 2017",
+        "show" : true,
+        "thoughts" : "A fun way to fulfill the language requirement ",
+        "user" : "an150@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    },
+    "-LBE7FCJCI2sDrmh2O6o" : {
+      "jbl34" : {
+        "assignments" : "Infrequent problem sets, take home midterm exam, final project",
+        "date" : "4/28/2018, 10:01:15 PM",
+        "difficulty" : "4",
+        "enjoyment" : "5",
+        "professor" : "Greg Malen",
+        "semester" : "Spring 18",
+        "show" : true,
+        "thoughts" : "I love this class! Malen is a great and patient professor, and topological data analysis is such an interesting and new topic. Definitely recommend!",
+        "user" : "jbl34@duke.edu",
+        "userShow" : "Anonymous",
+        "votes" : 0
+      }
+    }
+  },
+  "users" : {
+    "-LBDht9qsBymvZ-hItRR" : {
+      "admin" : true,
+      "email" : "bn51@duke.edu",
+      "image" : "https://firebasestorage.googleapis.com/v0/b/cs290-finalproject.appspot.com/o/images%2Frose_thumbnail.jpg?alt=media&token=7346ef4b-6ab3-44b4-b867-78a0fd1e7a49",
+      "password" : "administrator",
+      "submittedAdminRequest" : false
+    },
+    "-LBDhwMJdyhPG99AA2hD" : {
+      "admin" : true,
+      "email" : "mjh80@duke.edu",
+      "image" : "https://firebasestorage.googleapis.com/v0/b/cs290-finalproject.appspot.com/o/images%2Fberries_thumbnail.jpg?alt=media&token=79f1844d-4305-4f90-9152-80d92ef6e4c1",
+      "password" : "password",
+      "submittedAdminRequest" : false
+    },
+    "-LBDpiFHBVDiiWh53vqH" : {
+      "admin" : false,
+      "email" : "cmm134@duke.edu",
+      "image" : "https://firebasestorage.googleapis.com/v0/b/cs290-finalproject.appspot.com/o/images%2FIMG_0742.GIF?alt=media&token=e390c9cc-4c29-4b6a-831c-3ef7322f20a1",
+      "password" : "password",
+      "submittedAdminRequest" : true
+    },
+    "-LBDzu87ChaUEb9y2vYS" : {
+      "admin" : false,
+      "email" : "jbl34@duke.edu",
+      "image" : "https://firebasestorage.googleapis.com/v0/b/cs290-finalproject.appspot.com/o/images%2Fflower.jpg?alt=media&token=c8bc02dd-3ab0-4c25-99c1-f3f5e001edd3",
+      "password" : "ihatebelanie",
+      "submittedAdminRequest" : true
+    },
+    "-LBE57SIIfsQgHTPm8cV" : {
+      "admin" : false,
+      "email" : "sc494@duke.edu",
+      "image" : "https://firebasestorage.googleapis.com/v0/b/cs290-finalproject.appspot.com/o/images%2Fapartments_fullsize.jpg?alt=media&token=60d90430-65af-4c79-b653-d35d96f631dd",
+      "password" : "google123",
+      "submittedAdminRequest" : false
+    },
+    "-LBE5MRI69iuVI_9HpSe" : {
+      "admin" : false,
+      "email" : "an150@duke.edu",
+      "image" : "https://firebasestorage.googleapis.com/v0/b/cs290-finalproject.appspot.com/o/images%2F05AA67F2-CDA3-4A3A-82F4-027FD2AF98FF.jpeg?alt=media&token=04b66ff6-2c13-4392-9ef7-658e23b33ad4",
+      "password" : "belaniecompsci",
+      "submittedAdminRequest" : false
+    },
+    "-LBE8ajYjrIgh10a2Cp-" : {
+      "admin" : false,
+      "email" : "hcp9@duke.edu",
+      "image" : "https://firebasestorage.googleapis.com/v0/b/cs290-finalproject.appspot.com/o/images%2Facrobats_fullsize.jpg?alt=media&token=2807757f-7dcf-4e4b-8842-38117b06e870",
+      "password" : "Lacrosse127!",
+      "submittedAdminRequest" : false
+    },
+    "-LBEBsw8-EyKfPHwLLxJ" : {
+      "admin" : false,
+      "email" : "rms56@duke.edu",
+      "image" : "https://firebasestorage.googleapis.com/v0/b/cs290-finalproject.appspot.com/o/images%2FScreen%20Shot%202018-03-08%20at%2010.37.56%20AM.png?alt=media&token=f2cc3217-78f8-42b4-aba7-b78a26584177",
+      "password" : "giggle",
+      "submittedAdminRequest" : true
+    },
+    "-LBGbOmjZg2pD-d25h7F" : {
+      "admin" : false,
+      "email" : "test@duke.edu",
+      "image" : "https://firebasestorage.googleapis.com/v0/b/cs290-finalproject.appspot.com/o/images%2Fbreckenridge_thumbnail.jpg?alt=media&token=cb38d359-6151-4051-ade2-8b23c24cee96",
+      "password" : "a",
+      "submittedAdminRequest" : false
+    },
+    "-LBGxdNNa80dQsuVnful" : {
+      "admin" : false,
+      "email" : "tester@duke.edu",
+      "image" : "https://firebasestorage.googleapis.com/v0/b/cs290-finalproject.appspot.com/o/images%2Fberrytree_thumbnail.jpg?alt=media&token=cbd1f7ed-fc59-4c6e-b7b8-b0f280cbe814",
+      "password" : "password",
+      "submittedAdminRequest" : false
+    }
+  }
+}

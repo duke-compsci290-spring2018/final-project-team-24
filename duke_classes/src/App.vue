@@ -383,7 +383,7 @@
                 //empty field
                 if(classNumber==""){
                     this.checkFieldsDpt=true; 
-                    needsToBeAdded=1;
+                    ne,edsToBeAdded=1;
                     alert("Please fill out all fields");
                 }
                 else if(classNumber.includes(".")||classNumber.includes("#")||classNumber.includes("$") || classNumber.includes("[") || (classNumber!="" && isNaN(parseInt(classNumber)))){

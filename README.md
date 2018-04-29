@@ -18,7 +18,13 @@ Our application is useful, because it allows students to get information on the 
 
 ### Special instructions
 
+Administrator Login:
+email: bn51@duke.edu
+password: administrator
+
 ### References for Database
+
+Our database was made strictly from user input. We had other Duke students add reviews for classes that they had taken.
 
 ### Framework Choice
 
@@ -61,7 +67,7 @@ We chose to use Nodejs because we thought that components would be the best way 
 
 ### Bugs
 
-
+Sometimes the retrieving of information from the database will take a while. It depends on how much information is in the database and also how many people are using the website.
 
 ### Assets
 
