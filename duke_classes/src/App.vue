@@ -178,7 +178,7 @@
                                 exists = true;
                             }
                     }
-                if(this.newUserEmail==""||this.newUserPassword==""||file.name==""){
+                if(this.newUserEmail===""||this.newUserPassword===""||file.name===""){
                     this.checkSignUp=true;
                     alert("Please fill out all the fields to make a new user!");
                 }
@@ -239,9 +239,9 @@
            login: function()
             {
                 //fields not filled in
-                if(this.loginEmail=="" || this.loginPassword==""){
+                if(this.loginEmail==="" || this.loginPassword===""){
                     this.checkLogin=true;
-                    alert("Please fill out all fields!")
+                    alert("Please fill out all fields!");
                 }
                 
                 var found=0; 
@@ -258,7 +258,7 @@
                             }
                     }
                 //not a valid password or email
-                if(found==0){
+                if(found===0){
                     this.checkLogin=true;
                     alert("Could not find username and/or password");
                 }
@@ -326,7 +326,7 @@
             addDepartment: function(department)
             {
                 
-                if(department.includes(".")||department.includes("#")||department.includes("$") || department.includes("[") ||department==""){
+                if(department.includes(".")||department.includes("#")||department.includes("$") || department.includes("[") ||department===""){
                     this.checkFieldsHP=true;
                     alert("Please fill out all fields");
                 }
@@ -339,7 +339,7 @@
            
             deleteDepartment: function(department){
                // console.log("HERE");
-                if(department==""){
+                if(department===""){
                     this.checkFieldsHP=true;
                     alert("Please fill our all fields");
                 }
@@ -365,7 +365,7 @@
                                             break;
                                         }
                                     }
-                                    if(hasMoreClasses==false){
+                                    if(hasMoreClasses===false){
                                         hasClasses=false;
                                     }
                                     count++;
@@ -375,7 +375,7 @@
                         }
                         
                     }
-                    if(found==0){
+                    if(found===0){
                         this.checkFieldsHP=true;
                         alert('No department of name ' + department + " was found to delete");
                     }
@@ -385,12 +385,12 @@
             {
                 var needsToBeAdded=0; 
                 //empty field
-                if(classNumber==""){
+                if(classNumber===""){
                     this.checkFieldsDpt=true; 
                     ne,edsToBeAdded=1;
                     alert("Please fill out all fields");
                 }
-                else if(classNumber.includes(".")||classNumber.includes("#")||classNumber.includes("$") || classNumber.includes("[") || (classNumber!="" && isNaN(parseInt(classNumber)))){
+                else if(classNumber.includes(".")||classNumber.includes("#")||classNumber.includes("$") || classNumber.includes("[") || (classNumber!=="" && isNaN(parseInt(classNumber)))){
                     needsToBeAdded=1;
                     this.checkFieldsDpt=true;
                     alert("Make sure your class number is only numbers!");
@@ -411,7 +411,7 @@
 //                    this.checkFieldsDpt=true;
 //                    alert("Make sure your class number is only numbers!")
 //                }
-                if(needsToBeAdded==0){
+                if(needsToBeAdded===0){
                     console.log("ADDEd");
                     var found=0;
                     for(var i  = 0; i < this.departments.length; i++)
@@ -439,7 +439,7 @@
                 
                 //this.checkFieldsHP=false;
                 var found=0; 
-                if(newName==""){
+                if(newName===""){
                     this.checkFieldsHP=true; 
                     alert("Please fill out all fields");
                 }
@@ -462,7 +462,7 @@
                             }
                         }
                 }
-                if(found==0){
+                if(found===0){
                     this.checkFieldsHP=true; 
                     alert("Could not find department to edit");
                 }
@@ -479,7 +479,7 @@
                     }
                 }
                 //not a real class number
-                if(found==0){
+                if(found===0){
                     this.checkFieldsDpt=true;
                     canSwitch=1; 
                     alert("Could not find class to edit");
@@ -505,14 +505,14 @@
                     alert("Make sure your class number is only numbers!");
                 }
                 //empty fields
-                if(newNumber=="" || number==""){
+                if(newNumber==="" || number===""){
                     this.checkFieldsDpt=true; 
                     canSwitch=1;
                     //needsToBeAdded=1;
                     alert("Please fill out all fields!");
                 }
                 //can edit the name
-                if(canSwitch==0){
+                if(canSwitch===0){
                     this.checkFieldsDpt=false; 
                     console.log("SWITCH");
                     
@@ -540,7 +540,7 @@
                 var canDelete=0;
                 
                 //empty field
-                if(number==""){
+                if(number===""){
                     this.checkFieldsDpt=true; 
                     canDelete=1;
                     alert("Please fill out all fields!");
@@ -555,13 +555,13 @@
                     }
                 }
                 //not a real class number
-                if(found==0){
+                if(found===0){
                     this.checkFieldsDpt=true;
                     canDelete=1; 
                     alert("Cannot find class to delete");
                 }
                 
-                if(canDelete==0){
+                if(canDelete===0){
                     this.checkFieldsDpt=false;
                     var departmentIndex=0;
                     for(var i=0; i<this.departments.length; i++){
@@ -825,7 +825,7 @@
                 this.resetFilters(department, classNumber);
                 //console.log(departmentNumber+classNumber);
                 //console.log(this.currentClass);
-                console.log(enjoymentFilter)
+//                console.log(enjoymentFilter);
                 for(var j=0; j<this.classes.length; j++)
                     {
                         if(this.classes[j].class==department+classNumber)
