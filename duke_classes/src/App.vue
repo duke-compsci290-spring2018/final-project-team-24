@@ -90,6 +90,7 @@
                         >
         </classReviews>
         <h3 id = "logout" v-show= "currentUser != ''">Not you? <button v-on:click = "logout">Logout</button></h3>
+        <button v-on:click = "exportData()">Export Data</button>
     </div>
 </template>
 
@@ -110,7 +111,6 @@
       }
 
     var db = Firebase.initializeApp(config).database();
-    var auth = Firebase.auth();
     var departmentsWithClasses = db.ref("departments");
     var classesWithReviews = db.ref('classes');
     var reviewsRef = db.ref('reviews');
@@ -159,6 +159,10 @@
         },
         //methods
         methods:{
+            exportData()  {
+              var myWindow = window.open('', "Duke Classes Data");
+              myWindow.document.write(JSON.stringify(this.departments) + JSON.stringify(this.classes) + JSON.stringify(this.reviews) + JSON.stringify(this.users));
+            },
              createUser: function()
             {
                 var input = document.getElementById('files');
